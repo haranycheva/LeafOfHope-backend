@@ -1,9 +1,6 @@
-import HttpError from "../../helpers/HttpError.js";
+import {createToken, HttpError} from "../../helpers/index.js";
 import { User } from "../../models/User.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-
-const { JWT_SECRET } = process.env;
 
 const signin = async (req, res, next) => {
   const { email, password } = req.body;
@@ -16,10 +13,7 @@ const signin = async (req, res, next) => {
   if (!comparePassword) {
     throw HttpError(409, "Email or password are invalid");
   }
-  const payload = {
-    id: user._id,
-  };
-  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" });
+  const token = createToken(user)
   await User.findByIdAndUpdate(user._id, { token });
   res.json({
     token,

@@ -13,7 +13,8 @@ app.use("/api/advert", advertRouter);
 app.use("/api/auth", authRouter);
 
 app.use((err, req, res, next) => {
-  res.status(err.status).json({ message: err.message });
+  console.log(err);
+  res.status(err.status ? err.status : 500).json({ message: err.message });
 });
 
 // console.log(req.body);
