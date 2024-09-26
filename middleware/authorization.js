@@ -20,7 +20,6 @@ export const authorization = async (req, res, next) => {
     const { id } = jwt.verify(token, JWT_SECRET);
     const user = await User.findById(id);
     console.log(user);
-    
     if (!user || !user.token || user.token !== token) {
       throw HttpError(401, "user not found");
     }
