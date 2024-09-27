@@ -10,6 +10,8 @@ export const authorization = async (req, res, next) => {
   if (!authorization) {
     throw HttpError(401, "authorization header not found");
   }
+  console.log(authorization);
+  
   const [bearer, token] = authorization.split(" ");
 
   if (bearer !== "Bearer") {
