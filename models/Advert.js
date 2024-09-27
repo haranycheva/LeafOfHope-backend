@@ -13,6 +13,14 @@ const advertSchema = new Schema(
     description: {
       type: String,
     },
+    wish: {
+      type: String,
+      default: "Обміняв(ла) би на будь-яку рослинку"
+    },
+    image: {
+      type: String,
+      default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1727414803/PlantPhoto_m5u0t8.jpg"
+    },
     characteristics: {
       light: {
         type: String,

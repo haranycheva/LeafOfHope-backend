@@ -2,7 +2,10 @@ import { Advert } from "../../models/Advert.js";
 
 const addAdvert = async (req, res) => {
   const user = req.user;
-  console.log(user);
+  // const { secure_url } = await cloudinary.uploader.upload(req.file.path, {
+  //   folder: "leafofhopeAdverts",
+  // });
+  // await fs.unlink(req.file.path);
   const newAdvert = await Advert.create({
     ...req.body,
     keeper: {
