@@ -94,4 +94,4 @@ const advertSchema = new Schema(
 advertSchema.post("save", handleSaveError);
 advertSchema.pre("findOneAndUpdate", preUpdate);
 advertSchema.post("findOneAndUpdate", handleSaveError);
-export const Advert = model("post", advertSchema);
+export const Advert = model("advert", advertSchema);
