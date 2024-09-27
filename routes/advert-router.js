@@ -9,7 +9,9 @@ import isValidId from "../middleware/isValidId.js";
 
 const advertRouter = express.Router();
 
-advertRouter.get("/", authorization, advertControllers.getFilteredAdverts);
+advertRouter.get("/", advertControllers.getFilteredAdverts);
+
+advertRouter.get("/userAdverts", authorization, advertControllers.getUserAdverts);
 
 advertRouter.get("/:id", authorization, isValidId, advertControllers.getAdvertById);
 

@@ -88,6 +88,11 @@ const advertSchema = new Schema(
         required: [true, "adress is required"],
       },
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "user",
+    }
   },
   { versionKey: false, timestamps: true }
 );

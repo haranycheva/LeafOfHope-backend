@@ -20,6 +20,7 @@ const addAdvert = async (req, res) => {
       phone: user.phone,
       adress: user.adress,
     },
+    owner: user._id,
   });
   res.status(201).json(newAdvert);
 };
