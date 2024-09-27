@@ -1,10 +1,10 @@
 import express from "express";
 import authControllers from "../controllers/auth-conrollers.js";
-import {  authorization} from "../middleware/index.js";
+import {  authorization, upload} from "../middleware/index.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", authControllers.signup);
+authRouter.post("/signup", upload.single("avatar"), authControllers.signup);
 
 authRouter.post("/signin", authControllers.signin);
 

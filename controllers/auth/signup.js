@@ -1,20 +1,25 @@
-import {createToken, HttpError} from "../../helpers/index.js";
+import {cloudinary, createToken, HttpError} from "../../helpers/index.js";
 import { User } from "../../models/User.js";
 import bcrypt from "bcryptjs";
+import fs from "fs/promises"
 
 const signup = async (req, res, next) => {
-  const { username, email, password, adress, avatar, phone } = req.body;
+  const { username, email, password, adress, phone } = req.body;
+  console.log(req.body);
+  
   const user = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Email already exists");
   }
+  const {secure_url}= await cloudinary.uploader.upload(req.file.path, {folder: "leafofhope"});
+  await fs.unlink(req.file.path)
   const pass = await bcrypt.hash(password, 10);
   const newUser = await User.create({
     username,
     email,
     password: pass,
     adress,
-    avatar,
+    avatar : secure_url,
     phone,
   }).then((res) => {
     const token = createToken(res)
