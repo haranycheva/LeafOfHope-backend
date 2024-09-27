@@ -31,6 +31,6 @@ advertRouter.post(
 //   postControllers.editPost
 // );
 
-// advertRouter.delete("/:id", authorization, postControllers.deletePost);
+advertRouter.delete("/:id", authorization, advertControllers.deleteAdvert);
 
 export default advertRouter;
