@@ -8,7 +8,7 @@ import upload from "../middleware/upload.js";
 
 const advertRouter = express.Router();
 
-// advertRouter.get("/", authorization, postControllers.getPosts);
+advertRouter.get("/", authorization, advertControllers.getFilteredAdverts);
 
 // advertRouter.get("/:id", authorization, isValidId, postControllers.getPostById);
 
