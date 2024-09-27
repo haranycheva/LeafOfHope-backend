@@ -1,4 +1,6 @@
+import cloudinary from "../../helpers/cloudinary.js";
 import { Advert } from "../../models/Advert.js";
+import fs from "fs/promises";
 
 const addAdvert = async (req, res) => {
   const user = req.user;

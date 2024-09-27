@@ -1,6 +1,7 @@
 import express from "express";
 import advertControllers from "../controllers/advert-controllers.js";
 import authorization from "../middleware/authorization.js";
+import upload from "../middleware/upload.js";
 // import { validateBody } from "../decorators/index.js";
 // import { addPostSchema, editPostSchema } from "../schema/post-schema.js";
 // import { authorization, isEmptyBody, isValidId } from "../middleware/index.js";
@@ -13,6 +14,7 @@ const advertRouter = express.Router();
 
 advertRouter.post(
   "/",
+  upload.single("image"),
   authorization,
   advertControllers.addAdvert
 );

@@ -13,44 +13,48 @@ const advertSchema = new Schema(
     description: {
       type: String,
     },
+    way: {
+      type: String,
+      enum: ["exchange", "give"],
+      required: [true, "the way is required"],
+    },
     wish: {
       type: String,
-      default: "Обміняв(ла) би на будь-яку рослинку"
+      default: "Обміняв(ла) би на будь-яку рослинку",
     },
     image: {
       type: String,
-      default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1727414803/PlantPhoto_m5u0t8.jpg"
+      default:
+        "https://res.cloudinary.com/dk3syrsg5/image/upload/v1727414803/PlantPhoto_m5u0t8.jpg",
     },
-    characteristics: {
-      light: {
-        type: String,
-        enum: ["many", "normal", "little"],
-        required: [true, "the light property is required"],
-      },
-      humidity: {
-        type: String,
-        enum: ["high", "normal", "low"],
-        required: [true, "the humidity property is required"],
-      },
-      lifeDuration: {
-        type: String,
-        enum: ["annual", "biennial", "perennial"],
-        required: [true, "the lifeDuration property is required"],
-      },
-      temperature: {
-        type: String,
-        enum: ["high", "normal", "low"],
-        required: [true, "the temperature property is required"],
-      },
-      size: {
-        type: String,
-        enum: ["large", "medium", "small"],
-        required: [true, "the size property is required"],
-      },
-      alergenicity: {
-        type: Boolean,
-        required: [true, "the alergenicity property is required"],
-      },
+    light: {
+      type: String,
+      enum: ["many", "normal", "little"],
+      required: [true, "the light property is required"],
+    },
+    humidity: {
+      type: String,
+      enum: ["high", "normal", "low"],
+      required: [true, "the humidity property is required"],
+    },
+    lifeDuration: {
+      type: String,
+      enum: ["annual", "biennial", "perennial"],
+      required: [true, "the lifeDuration property is required"],
+    },
+    temperature: {
+      type: String,
+      enum: ["high", "normal", "low"],
+      required: [true, "the temperature property is required"],
+    },
+    size: {
+      type: String,
+      enum: ["large", "medium", "small"],
+      required: [true, "the size property is required"],
+    },
+    alergenicity: {
+      type: Boolean,
+      required: [true, "the alergenicity property is required"],
     },
     keeper: {
       username: {
