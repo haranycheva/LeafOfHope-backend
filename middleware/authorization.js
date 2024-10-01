@@ -10,7 +10,7 @@ export const authorization = async (req, res, next) => {
   if (!authorization) {
     throw HttpError(401, "authorization header not found");
   }
-  console.log(authorization);
+  // console.log(authorization);
   
   const [bearer, token] = authorization.split(" ");
 
@@ -20,6 +20,7 @@ export const authorization = async (req, res, next) => {
   try {
     console.log(token);
     const { id } = jwt.verify(token, JWT_SECRET);
+    console.log(id);
     const user = await User.findById(id);
     console.log(user);
     if (!user || !user.token || user.token !== token) {
