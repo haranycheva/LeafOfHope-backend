@@ -4,6 +4,7 @@ import { Advert } from "../../models/Advert.js";
 const getFilteredAdverts = async (req, res, next) => {
   const { page = 1, limit = 10 } = req.query;
   console.log(req.body)
+  console.log(req.data)
   const whatToFilter = {};
   for (const prop in req.body) {
     if (req.body[prop]) {
