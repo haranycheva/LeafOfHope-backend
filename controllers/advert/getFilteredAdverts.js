@@ -3,14 +3,15 @@ import { Advert } from "../../models/Advert.js";
 
 const getFilteredAdverts = async (req, res, next) => {
   const { page = 1, limit = 10 } = req.query;
-  console.log(req.body)
-  console.log(req.data)
-  const whatToFilter = {};
-  for (const prop in req.body) {
-    if (req.body[prop]) {
-      whatToFilter[prop] = req.body[prop];
-    }
-  }
+  // const whatToFilter = {};
+  // for (const prop in req.body) {
+  //   if (req.body[prop]) {
+  //     whatToFilter[prop] = req.body[prop];
+  //   }
+  // }
+  const whatToFilter = {...req.query}
+  delete whatToFilter.page
+  delete whatToFilter.limit
   const totalAdverts = await Advert.countDocuments(whatToFilter);
   const result = await Advert.find(whatToFilter, "", {
     skip: (page - 1) * limit,
