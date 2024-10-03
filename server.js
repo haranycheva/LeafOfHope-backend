@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import app from "./app.js"
 import mongoose from 'mongoose';
 
@@ -11,6 +12,7 @@ mongoose.connect(DB_HOST).then(() => {
   process.exit(1)
 })
 
+// console.log(nanoid())
 
 
 // vjvtqKgHa43kA0VZ

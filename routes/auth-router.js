@@ -10,6 +10,8 @@ authRouter.post("/signin", authControllers.signin);
 
 authRouter.get("/getInfo", authorization, authControllers.getInfo);
 
-authRouter.post("/logout",authorization, authControllers.logout);
+authRouter.post("/logout", authorization, authControllers.logout);
+
+authRouter.put("/", upload.single("avatar"), authorization, authControllers.redactUser)
 
 export default authRouter;
