@@ -13,7 +13,7 @@ advertRouter.get("/", advertControllers.getFilteredAdverts);
 
 advertRouter.get("/userAdverts", authorization, advertControllers.getUserAdverts);
 
-advertRouter.get("/:id", authorization, isValidId, advertControllers.getAdvertById);
+advertRouter.get("/:id", isValidId, advertControllers.getAdvertById);
 
 advertRouter.post(
   "/",
