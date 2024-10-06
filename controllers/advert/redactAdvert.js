@@ -12,8 +12,6 @@ const redactAdvert = async (req, res, next) => {
     await fs.unlink(req.file.path);
     req.body.image = secure_url;
   }
-  console.log(owner, advertId);
-  
   const editedAdvert = await Advert.findOneAndUpdate(
     { _id: advertId, owner },
     { ...req.body }
