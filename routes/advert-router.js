@@ -22,14 +22,12 @@ advertRouter.post(
   advertControllers.addAdvert
 );
 
-// advertRouter.put(
-//   "/:id",
-//   authorization,
-//   isValidId,
-//   isEmptyBody,
-//   validateBody(editPostSchema),
-//   postControllers.editPost
-// );
+advertRouter.put(
+  "/:id",
+  upload.single("image"),
+  authorization,
+  advertControllers.redactAdvert
+);
 
 advertRouter.delete("/:id", authorization, advertControllers.deleteAdvert);
 

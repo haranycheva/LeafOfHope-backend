@@ -18,11 +18,8 @@ export const authorization = async (req, res, next) => {
     throw HttpError(401, "authorization header must be 'Bearer'");
   }
   try {
-    console.log(token);
     const { id } = jwt.verify(token, JWT_SECRET);
-    console.log(id);
     const user = await User.findById(id);
-    console.log(user);
     if (!user || !user.token || user.token !== token) {
       throw HttpError(401, "user not found");
     }
