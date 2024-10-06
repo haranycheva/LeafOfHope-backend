@@ -17,8 +17,4 @@ app.use((err, req, res, next) => {
   res.status(err.status ? err.status : 500).json({ message: err.message });
 });
 
-// console.log(req.body);
-//   console.log(req.params);
-// console.log(req.query);
-
 export default app;
