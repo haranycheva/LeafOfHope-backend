@@ -19,7 +19,7 @@ const signup = async (req, res, next) => {
     await fs.unlink(req.file.path);
     req.body.avatar = secure_url;
   }
-  if(password.length < 6){
+  if(!password || password.length < 6){
     throw HttpError(409, "Password must be more than 6 symbols");
   }
   const pass = await bcrypt.hash(password, 10);

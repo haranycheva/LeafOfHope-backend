@@ -4,6 +4,9 @@ import fs from "fs/promises";
 
 const redactUser = async (req, res, next) => {
   const { _id} = req.user;
+  if(req.body.password || req.body.email){
+    throw HttpError(400, `Password or email can't be changed`)
+  }
   if (req.file) {
     const { secure_url } = await cloudinary.uploader.upload(req.file.path, {
       folder: "leafofhope",
