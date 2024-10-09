@@ -20,7 +20,6 @@ const advertSchema = new Schema(
     },
     wish: {
       type: String,
-      default: "Обміняв(ла) би на будь-яку рослинку",
     },
     image: {
       type: String,
