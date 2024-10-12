@@ -1,4 +1,4 @@
-import { cloudinary, HttpError } from "../../helpers/index.js";
+import { addPicture, HttpError } from "../../helpers/index.js";
 import { User } from "../../models/User.js";
 import fs from "fs/promises";
 
@@ -8,11 +8,7 @@ const redactUser = async (req, res, next) => {
     throw HttpError(400, `Password or email can't be changed`)
   }
   if (req.file) {
-    const { secure_url } = await cloudinary.uploader.upload(req.file.path, {
-      folder: "leafofhope",
-    });
-    await fs.unlink(req.file.path);
-    req.body.avatar = secure_url;
+    req.body.avatar = await addPicture(req, "user");
   }
   const editedUser = await User.findOneAndUpdate({ _id }, { ...req.body });
   if (!editedUser) {

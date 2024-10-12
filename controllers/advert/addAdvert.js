@@ -1,15 +1,11 @@
-import cloudinary from "../../helpers/cloudinary.js";
+import addPicture from "../../helpers/addPicture.js";
+import HttpError from "../../helpers/HttpError.js";
 import { Advert } from "../../models/Advert.js";
-import fs from "fs/promises";
 
 const addAdvert = async (req, res) => {
   const user = req.user;
   if (req.file) {
-    const { secure_url } = await cloudinary.uploader.upload(req.file.path, {
-      folder: "leafofhopeAdverts",
-    });
-    await fs.unlink(req.file.path);
-    req.body.image = secure_url;
+    req.body.image = await addPicture(req, "advert");
   }
   const newAdvert = await Advert.create({
     ...req.body,
@@ -22,6 +18,9 @@ const addAdvert = async (req, res) => {
     },
     owner: user._id,
   });
+  if(!newAdvert){
+    throw HttpError(500, `Creating failed`);
+  }
   res.status(201).json(newAdvert);
 };
 

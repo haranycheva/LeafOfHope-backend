@@ -1,8 +1,7 @@
-import { log } from "console";
-import { cloudinary, createToken, HttpError } from "../../helpers/index.js";
+
+import { addPicture, createToken, HttpError } from "../../helpers/index.js";
 import { User } from "../../models/User.js";
 import bcrypt from "bcryptjs";
-import fs from "fs/promises";
 
 const signup = async (req, res, next) => {
   const { username, email, password, adress, phone } = req.body;
@@ -11,14 +10,9 @@ const signup = async (req, res, next) => {
   if (user) {
     throw HttpError(409, "Email already exists");
   }
-  
-  if (req.file) {
-    const { secure_url } = await cloudinary.uploader.upload(req.file.path, {
-      folder: "leafofhope",
-    });
-    await fs.unlink(req.file.path);
-    req.body.avatar = secure_url;
-  }
+    if (req.file) {
+      req.body.avatar =  await addPicture(req, "user");
+    }
   if(!password || password.length < 6){
     throw HttpError(409, "Password must be more than 6 symbols");
   }

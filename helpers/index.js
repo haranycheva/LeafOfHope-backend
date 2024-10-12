@@ -1,5 +1,4 @@
-export {default as rewriteJSON} from "./rewriteJSON.js"
-export {default as getAllPosts} from "./getAllPosts.js"
 export {default as HttpError} from "./HttpError.js"
 export {default as createToken} from "./createToken.js"
 export {default as cloudinary} from "./cloudinary.js"
+export {default as addPicture} from "./addPicture.js"

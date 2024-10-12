@@ -1,16 +1,11 @@
-import { cloudinary, HttpError } from "../../helpers/index.js";
+import { addPicture, HttpError } from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
-import fs from "fs/promises";
 
 const redactAdvert = async (req, res, next) => {
   const { _id: owner } = req.user;
   const advertId = req.params.id;
   if (req.file) {
-    const { secure_url } = await cloudinary.uploader.upload(req.file.path, {
-      folder: "leafofhopeAdverts",
-    });
-    await fs.unlink(req.file.path);
-    req.body.image = secure_url;
+    req.body.image = await addPicture(req, "advert");
   }
   const editedAdvert = await Advert.findOneAndUpdate(
     { _id: advertId, owner },
