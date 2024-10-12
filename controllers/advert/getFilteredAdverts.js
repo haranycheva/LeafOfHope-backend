@@ -1,11 +1,8 @@
-import { HttpError } from "../../helpers/index.js";
+import { HttpError, sortAdverts } from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
 
 const getFilteredAdverts = async (req, res, next) => {
-  const { page = 1, limit = 10 } = req.query;
-  const whatToFilter = { ...req.query };
-  delete whatToFilter.page;
-  delete whatToFilter.limit;
+  const { page = 1, limit = 10, sort = "", ...whatToFilter } = req.query;
   const totalAdverts = await Advert.countDocuments(whatToFilter);
   const result = await Advert.find(whatToFilter, "", {
     skip: (page - 1) * limit,
@@ -14,7 +11,7 @@ const getFilteredAdverts = async (req, res, next) => {
   if (!result) {
     throw HttpError(400, `Not found`);
   }
-  const sortedByDate = result.sort((a,b) => Date.parse(b.createdAt) -  Date.parse(a.createdAt))
-  res.json({ result: sortedByDate, tottal: totalAdverts });
+  const sortedAdverts = sortAdverts(result, sort)
+  res.json({ result: sortedAdverts, tottal: totalAdverts });
 };
 export default getFilteredAdverts;
