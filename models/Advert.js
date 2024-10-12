@@ -55,6 +55,28 @@ const advertSchema = new Schema(
       type: Boolean,
       required: [true, "the alergenicity property is required"],
     },
+    attention: {
+      type: String,
+      enum: ["many", "normal", "little"],
+    },
+    survive: {
+      type: String,
+      enum: ["high", "normal", "low"],
+    },
+    state: {
+      type: String,
+      enum: ["good", "bad", "enough"],
+    },
+    flowering: {
+      type: Boolean,
+    },
+    growthRate: {
+      type: String,
+      enum: ["hight", "normal", "low"],
+    },
+    edible: {
+      type: Boolean,
+    },
     keeper: {
       username: {
         type: String,
@@ -91,7 +113,7 @@ const advertSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
       ref: "user",
-    }
+    },
   },
   { versionKey: false, timestamps: true }
 );
