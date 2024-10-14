@@ -1,5 +1,4 @@
-import addPicture from "../../helpers/addPicture.js";
-import HttpError from "../../helpers/HttpError.js";
+import {removeEmptyProps, addPicture, HttpError} from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
 
 const addAdvert = async (req, res) => {
@@ -7,8 +6,9 @@ const addAdvert = async (req, res) => {
   if (req.file) {
     req.body.image = await addPicture(req, "advert");
   }
+  const reqBodyWithoutEmpty = removeEmptyProps(req.body)
   const newAdvert = await Advert.create({
-    ...req.body,
+    ...reqBodyWithoutEmpty,
     keeper: {
       username: user.username,
       email: user.email,

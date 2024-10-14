@@ -22,9 +22,18 @@ const advertSchema = new Schema(
       type: String,
     },
     image: {
-      type: String,
-      default:
-        "https://res.cloudinary.com/dk3syrsg5/image/upload/v1727414803/PlantPhoto_m5u0t8.jpg",
+      "small-250px": {
+        type: String,
+        default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+      },
+      "medium-300px": {
+        type: String,
+        default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+      },
+      "large-500px": {
+        type: String,
+        default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg",
+      },
     },
     light: {
       type: String,
