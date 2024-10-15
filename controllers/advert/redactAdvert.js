@@ -1,4 +1,4 @@
-import { addPicture, HttpError } from "../../helpers/index.js";
+import { addPicture, HttpError, removeEmptyProps } from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
 
 const redactAdvert = async (req, res, next) => {
@@ -7,9 +7,10 @@ const redactAdvert = async (req, res, next) => {
   if (req.file) {
     req.body.image = await addPicture(req, "advert");
   }
+  const reqBodyWithoutEmpty = removeEmptyProps(req.body)
   const editedAdvert = await Advert.findOneAndUpdate(
     { _id: advertId, owner },
-    { ...req.body }
+    { ...reqBodyWithoutEmpty }
   );
   if (!editedAdvert) {
     throw HttpError(404, `Can not find an advert with id ${advertId}`);
