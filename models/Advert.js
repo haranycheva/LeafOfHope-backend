@@ -81,7 +81,7 @@ const advertSchema = new Schema(
     },
     growthRate: {
       type: String,
-      enum: ["hight", "normal", "low"],
+      enum: ["high", "normal", "low"],
     },
     edible: {
       type: Boolean,
