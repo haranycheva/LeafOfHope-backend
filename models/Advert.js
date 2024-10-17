@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { handleSaveError, preUpdate } from "./hooks.js";
-import { emailReg, phoneReg } from "./regex.js";
+import { emailReg, phoneReg } from "../regex/regex.js";
 
 const advertSchema = new Schema(
   {

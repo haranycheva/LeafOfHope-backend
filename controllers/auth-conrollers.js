@@ -1,4 +1,4 @@
-import ctrlWrapper from '../decorators/ctrlWrapper.js'
+import {ctrlWrapper} from "../decorators/index.js"
 import { getInfo, logout, redactUser, signin, signup } from './auth/index.js'
 
 export default {

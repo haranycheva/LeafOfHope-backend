@@ -3,9 +3,8 @@ import advertControllers from "../controllers/advert-controllers.js";
 import authorization from "../middleware/authorization.js";
 import upload from "../middleware/upload.js";
 import isValidId from "../middleware/isValidId.js";
-// import { validateBody } from "../decorators/index.js";
-// import { addPostSchema, editPostSchema } from "../schema/post-schema.js";
-// import { authorization, isEmptyBody, isValidId } from "../middleware/index.js";
+import {validateBody} from "../decorators/index.js";
+import { advertValidationSchema } from "../schema/advert-schema.js";
 
 const advertRouter = express.Router();
 
@@ -19,6 +18,7 @@ advertRouter.post(
   "/",
   upload.single("image"),
   authorization,
+  validateBody(advertValidationSchema),
   advertControllers.addAdvert
 );
 

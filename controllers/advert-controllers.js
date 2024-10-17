@@ -1,4 +1,4 @@
-import ctrlWrapper from "../decorators/ctrlWrapper.js"
+import {ctrlWrapper} from "../decorators/index.js"
 import {addAdvert, deleteAdvert, getAdvertById, getFilteredAdverts, getUserAdverts, redactAdvert} from "./advert/index.js"
 
 export default {
