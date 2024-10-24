@@ -3,7 +3,7 @@ import { pictureSchema } from "./picture-schema.js";
 
 export const advertValidationSchema = Joi.object({
   name: Joi.string().min(1).max(28).required(),
-  description: Joi.string(),
+  description: Joi.string().allow(''),
   way: Joi.string().valid("exchange", "give").required(),
   wish: Joi.string(),
   image: pictureSchema,
