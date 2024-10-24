@@ -5,7 +5,7 @@ export const advertValidationSchema = Joi.object({
   name: Joi.string().min(1).max(28).required(),
   description: Joi.string().allow(''),
   way: Joi.string().valid("exchange", "give").required(),
-  wish: Joi.string(),
+  wish: Joi.string().allow(''),
   image: pictureSchema,
   light: Joi.string().valid("many", "normal", "little").required(),
   humidity: Joi.string().valid("high", "normal", "low").required(),
