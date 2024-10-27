@@ -107,7 +107,7 @@
         }
       }
     },
-    "/api/users/logout": {
+    "/api/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -131,7 +131,7 @@
         }
       }
     },
-    "/api/users/getInfo": {
+    "/api/auth/getInfo": {
       "get": {
         "tags": ["User"],
         "summary": "User get all info",
@@ -159,7 +159,7 @@
         }
       }
     },
-    "/api/users/": {
+    "/api/auth/": {
       "put": {
         "tags": ["User"],
         "summary": "User change info",
