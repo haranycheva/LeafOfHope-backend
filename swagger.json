@@ -160,7 +160,7 @@
       }
     },
     "/api/users/": {
-      "patch": {
+      "put": {
         "tags": ["User"],
         "summary": "User change info",
         "parameters": [],
@@ -169,7 +169,7 @@
           "description": "changeInfo's object",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/EditUserRequest"
               }
@@ -182,13 +182,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ChangeInfoResponse"
+                  "$ref": "#/components/schemas/GetInfoResponse"
                 }
               }
             }
           },
           "401": {
-            "description": "Not authorized/User not found/Password invalid!",
+            "description": "Not authorized",
+            "content": {}
+          },
+          "400": {
+            "description": "Password or email can't be changed",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
             "content": {}
           }
         }
@@ -369,6 +377,31 @@
                 "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_500,w_500/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
               }
             }
+          }
+        }
+      },
+      "EditUserRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Baby Shark"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380123456789"
+          },
+          "adress": {
+            "type": "string",
+            "description": "User's adress",
+            "example": "Kyiv, Ukraine"
+          },
+          "avatar": {
+            "type": "file",
+            "description": "User's avatar",
+            "example": "picture"
           }
         }
       }
