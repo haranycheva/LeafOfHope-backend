@@ -17,11 +17,11 @@ const getFilteredAdverts = async (req, res, next) => {
   const result = await Advert.find({ ...whatToFilter, name: nameReg }, "", {
     skip: (page - 1) * limit,
     limit,
-  });
+  }).sort(sortAdverts(sort));
   if (!result) {
     throw HttpError(400, `Not found`);
   }
-  const sortedAdverts = sortAdverts(result, sort);
-  res.json({ result: sortedAdverts, tottal: totalAdverts });
+  // const sortedAdverts = sortAdverts(result, sort);
+  res.json({ result, tottal: totalAdverts });
 };
 export default getFilteredAdverts;
