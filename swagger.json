@@ -201,6 +201,308 @@
           }
         }
       }
+    },
+    "/api/advert/": {
+      "get": {
+        "tags": ["Advert"],
+        "summary": "Get filtered adverts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Number of adverts per page"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by advert name (partial match)"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "new",
+              "enum": ["new", "old", "start-alphabet", "end-alphabet"]
+            },
+            "description": "Sort by field (e.g., 'name' or '-createdAt')"
+          },
+          {
+            "name": "way",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["exchange", "give"]
+            },
+            "description": "Filter by way of giving the plant"
+          },
+          {
+            "name": "light",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["many", "normal", "little"]
+            },
+            "description": "Filter by light requirements"
+          },
+          {
+            "name": "humidity",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["high", "normal", "low"]
+            },
+            "description": "Filter by humidity requirements"
+          },
+          {
+            "name": "lifeDuration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["annual", "biennial", "perennial"]
+            },
+            "description": "Filter by plant's life duration"
+          },
+          {
+            "name": "temperature",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["high", "normal", "low"]
+            },
+            "description": "Filter by temperature requirements"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["large", "medium", "small"]
+            },
+            "description": "Filter by plant size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filtered adverts successfully retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilteredAdvertsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid query parameters)",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": ["Advert"],
+        "summary": "Add advert",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Advert's object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAdvertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddAdvertResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Creating failed",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/advert/{advertId}": {
+      "put": {
+        "tags": ["Advert"],
+        "summary": "Edit advert",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "advertId",
+            "required": true,
+            "type": "string",
+            "description": "Advert's id"
+          }
+        ],
+        "requestBody": {
+          "description": "Advert's object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAdvertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddAdvertResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Advert with id = :advertIdis not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Advert"],
+        "summary": "Advert delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "advertId",
+            "required": true,
+            "type": "string",
+            "description": "Advert's id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAdvertResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized/User not found",
+            "content": {}
+          },
+          "404": {
+            "description": "Advert with id = :advertId is not found"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Advert"],
+        "summary": "Get advert by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "advertId",
+            "required": true,
+            "type": "string",
+            "description": "Advert's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddAdvertResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized/User not found",
+            "content": {}
+          },
+          "404": {
+            "description": "Advert with id = :advertId is not found"
+          }
+        }
+      }
+    },
+    "api/advert/userAdverts": {
+      "get": {
+        "tags": ["Advert"],
+        "summary": "Get user`s adverts",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Adverts successfully retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilteredAdvertsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -235,9 +537,9 @@
             "example": "Kyiv, Ukraine"
           },
           "avatar": {
-            "type": "file",
-            "description": "User's avatar",
-            "example": "picture"
+            "type": "string",
+            "format": "binary",
+            "description": "User's avatar"
           }
         }
       },
@@ -399,9 +701,616 @@
             "example": "Kyiv, Ukraine"
           },
           "avatar": {
-            "type": "file",
-            "description": "User's avatar",
-            "example": "picture"
+            "type": "string",
+            "format": "binary",
+            "description": "User's avatar"
+          }
+        }
+      },
+      "AddAdvertRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "way",
+          "light",
+          "humidity",
+          "lifeDuration",
+          "temperature",
+          "size",
+          "alergenicity"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Advert name",
+            "minLength": 1,
+            "maxLength": 28,
+            "example": "Beautiful Monstera"
+          },
+          "description": {
+            "type": "string",
+            "description": "Advert description",
+            "example": "Looking for a good home for this plant"
+          },
+          "way": {
+            "type": "string",
+            "enum": ["exchange", "give"],
+            "description": "Way of giving the plant",
+            "example": "exchange"
+          },
+          "wish": {
+            "type": "string",
+            "description": "Wish or expected exchange item",
+            "example": "Peace lily"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "description": "Picture of the plant"
+          },
+
+          "light": {
+            "type": "string",
+            "enum": ["many", "normal", "little"],
+            "description": "Light requirements",
+            "example": "normal"
+          },
+          "humidity": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Humidity requirements",
+            "example": "high"
+          },
+          "lifeDuration": {
+            "type": "string",
+            "enum": ["annual", "biennial", "perennial"],
+            "description": "Plant's life duration",
+            "example": "perennial"
+          },
+          "temperature": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Preferred temperature",
+            "example": "normal"
+          },
+          "size": {
+            "type": "string",
+            "enum": ["large", "medium", "small"],
+            "description": "Size of the plant",
+            "example": "medium"
+          },
+          "alergenicity": {
+            "type": "boolean",
+            "description": "Whether the plant is allergenic",
+            "example": false
+          },
+          "attention": {
+            "type": "string",
+            "enum": ["many", "normal", "little"],
+            "description": "Amount of attention required",
+            "example": "normal"
+          },
+          "survive": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Survival capability",
+            "example": "high"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["good", "bad", "enough"],
+            "description": "State of the plant",
+            "example": "good"
+          },
+          "flowering": {
+            "type": "boolean",
+            "description": "Whether the plant flowers",
+            "example": true
+          },
+          "growthRate": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Growth rate of the plant",
+            "example": "normal"
+          },
+          "edible": {
+            "type": "boolean",
+            "description": "Whether the plant is edible",
+            "example": false
+          }
+        }
+      },
+      "AddAdvertResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier for the advert",
+            "example": "64b7c7f9a19f4b2c5d8c1a9d"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the advert",
+            "example": "Beautiful Monstera"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the advert",
+            "example": "Looking for a good home for this plant"
+          },
+          "way": {
+            "type": "string",
+            "enum": ["exchange", "give"],
+            "description": "Way of giving the plant",
+            "example": "exchange"
+          },
+          "wish": {
+            "type": "string",
+            "description": "Wish or expected exchange item",
+            "example": "Peace lily"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "small-250px": {
+                "type": "string",
+                "description": "URL for the small image size",
+                "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg"
+              },
+              "medium-300px": {
+                "type": "string",
+                "description": "URL for the medium image size",
+                "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg"
+              },
+              "large-500px": {
+                "type": "string",
+                "description": "URL for the large image size",
+                "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg"
+              }
+            }
+          },
+          "light": {
+            "type": "string",
+            "enum": ["many", "normal", "little"],
+            "description": "Light requirements",
+            "example": "normal"
+          },
+          "humidity": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Humidity requirements",
+            "example": "high"
+          },
+          "lifeDuration": {
+            "type": "string",
+            "enum": ["annual", "biennial", "perennial"],
+            "description": "Life duration of the plant",
+            "example": "perennial"
+          },
+          "temperature": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Temperature requirements",
+            "example": "normal"
+          },
+          "size": {
+            "type": "string",
+            "enum": ["large", "medium", "small"],
+            "description": "Size of the plant",
+            "example": "medium"
+          },
+          "alergenicity": {
+            "type": "boolean",
+            "description": "Whether the plant is allergenic",
+            "example": false
+          },
+          "attention": {
+            "type": "string",
+            "enum": ["many", "normal", "little"],
+            "description": "Attention required for the plant",
+            "example": "normal"
+          },
+          "survive": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Survival capability of the plant",
+            "example": "high"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["good", "bad", "enough"],
+            "description": "Current state of the plant",
+            "example": "good"
+          },
+          "flowering": {
+            "type": "boolean",
+            "description": "Indicates if the plant flowers",
+            "example": true
+          },
+          "growthRate": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Growth rate of the plant",
+            "example": "normal"
+          },
+          "edible": {
+            "type": "boolean",
+            "description": "Indicates if the plant is edible",
+            "example": false
+          },
+          "keeper": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "Keeper's username",
+                "example": "PlantLover123"
+              },
+              "email": {
+                "type": "string",
+                "description": "Keeper's email",
+                "example": "plantlover@example.com"
+              },
+              "avatar": {
+                "type": "object",
+                "properties": {
+                  "small-250px": {
+                    "type": "string",
+                    "description": "URL for the small avatar size",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
+                  },
+                  "medium-300px": {
+                    "type": "string",
+                    "description": "URL for the medium avatar size",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
+                  },
+                  "large-500px": {
+                    "type": "string",
+                    "description": "URL for the large avatar size",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg"
+                  }
+                }
+              },
+              "phone": {
+                "type": "string",
+                "description": "Keeper's phone number",
+                "example": "+380123456789"
+              },
+              "adress": {
+                "type": "string",
+                "description": "Keeper's address",
+                "example": "Kyiv, Ukraine"
+              }
+            }
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner's unique ID",
+            "example": "64b7c7f9a19f4b2c5d8c1a9d"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when the advert was created",
+            "example": "2023-01-01T00:00:00.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when the advert was last updated",
+            "example": "2023-01-02T00:00:00.000Z"
+          }
+        }
+      },
+      "EditAdvertRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Advert name",
+            "minLength": 1,
+            "maxLength": 28,
+            "example": "Beautiful Monstera"
+          },
+          "description": {
+            "type": "string",
+            "description": "Advert description",
+            "example": "Looking for a good home for this plant"
+          },
+          "way": {
+            "type": "string",
+            "enum": ["exchange", "give"],
+            "description": "Way of giving the plant",
+            "example": "exchange"
+          },
+          "wish": {
+            "type": "string",
+            "description": "Wish or expected exchange item",
+            "example": "Peace lily"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "description": "Picture of the plant"
+          },
+
+          "light": {
+            "type": "string",
+            "enum": ["many", "normal", "little"],
+            "description": "Light requirements",
+            "example": "normal"
+          },
+          "humidity": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Humidity requirements",
+            "example": "high"
+          },
+          "lifeDuration": {
+            "type": "string",
+            "enum": ["annual", "biennial", "perennial"],
+            "description": "Plant's life duration",
+            "example": "perennial"
+          },
+          "temperature": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Preferred temperature",
+            "example": "normal"
+          },
+          "size": {
+            "type": "string",
+            "enum": ["large", "medium", "small"],
+            "description": "Size of the plant",
+            "example": "medium"
+          },
+          "alergenicity": {
+            "type": "boolean",
+            "description": "Whether the plant is allergenic",
+            "example": false
+          },
+          "attention": {
+            "type": "string",
+            "enum": ["many", "normal", "little"],
+            "description": "Amount of attention required",
+            "example": "normal"
+          },
+          "survive": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Survival capability",
+            "example": "high"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["good", "bad", "enough"],
+            "description": "State of the plant",
+            "example": "good"
+          },
+          "flowering": {
+            "type": "boolean",
+            "description": "Whether the plant flowers",
+            "example": true
+          },
+          "growthRate": {
+            "type": "string",
+            "enum": ["high", "normal", "low"],
+            "description": "Growth rate of the plant",
+            "example": "normal"
+          },
+          "edible": {
+            "type": "boolean",
+            "description": "Whether the plant is edible",
+            "example": false
+          }
+        }
+      },
+      "DeleteAdvertResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Advert's deleted",
+            "example": "delete success"
+          },
+          "advert": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Unique identifier for the advert",
+                "example": "64b7c7f9a19f4b2c5d8c1a9d"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the advert",
+                "example": "Beautiful Monstera"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the advert",
+                "example": "Looking for a good home for this plant"
+              },
+              "way": {
+                "type": "string",
+                "enum": ["exchange", "give"],
+                "description": "Way of giving the plant",
+                "example": "exchange"
+              },
+              "wish": {
+                "type": "string",
+                "description": "Wish or expected exchange item",
+                "example": "Peace lily"
+              },
+              "image": {
+                "type": "object",
+                "properties": {
+                  "small-250px": {
+                    "type": "string",
+                    "description": "URL for the small image size",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg"
+                  },
+                  "medium-300px": {
+                    "type": "string",
+                    "description": "URL for the medium image size",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg"
+                  },
+                  "large-500px": {
+                    "type": "string",
+                    "description": "URL for the large image size",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg"
+                  }
+                }
+              },
+              "light": {
+                "type": "string",
+                "enum": ["many", "normal", "little"],
+                "description": "Light requirements",
+                "example": "normal"
+              },
+              "humidity": {
+                "type": "string",
+                "enum": ["high", "normal", "low"],
+                "description": "Humidity requirements",
+                "example": "high"
+              },
+              "lifeDuration": {
+                "type": "string",
+                "enum": ["annual", "biennial", "perennial"],
+                "description": "Life duration of the plant",
+                "example": "perennial"
+              },
+              "temperature": {
+                "type": "string",
+                "enum": ["high", "normal", "low"],
+                "description": "Temperature requirements",
+                "example": "normal"
+              },
+              "size": {
+                "type": "string",
+                "enum": ["large", "medium", "small"],
+                "description": "Size of the plant",
+                "example": "medium"
+              },
+              "alergenicity": {
+                "type": "boolean",
+                "description": "Whether the plant is allergenic",
+                "example": false
+              },
+              "attention": {
+                "type": "string",
+                "enum": ["many", "normal", "little"],
+                "description": "Attention required for the plant",
+                "example": "normal"
+              },
+              "survive": {
+                "type": "string",
+                "enum": ["high", "normal", "low"],
+                "description": "Survival capability of the plant",
+                "example": "high"
+              },
+              "state": {
+                "type": "string",
+                "enum": ["good", "bad", "enough"],
+                "description": "Current state of the plant",
+                "example": "good"
+              },
+              "flowering": {
+                "type": "boolean",
+                "description": "Indicates if the plant flowers",
+                "example": true
+              },
+              "growthRate": {
+                "type": "string",
+                "enum": ["high", "normal", "low"],
+                "description": "Growth rate of the plant",
+                "example": "normal"
+              },
+              "edible": {
+                "type": "boolean",
+                "description": "Indicates if the plant is edible",
+                "example": false
+              },
+              "keeper": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Keeper's username",
+                    "example": "PlantLover123"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Keeper's email",
+                    "example": "plantlover@example.com"
+                  },
+                  "avatar": {
+                    "type": "object",
+                    "properties": {
+                      "small-250px": {
+                        "type": "string",
+                        "description": "URL for the small avatar size",
+                        "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
+                      },
+                      "medium-300px": {
+                        "type": "string",
+                        "description": "URL for the medium avatar size",
+                        "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
+                      },
+                      "large-500px": {
+                        "type": "string",
+                        "description": "URL for the large avatar size",
+                        "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg"
+                      }
+                    }
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Keeper's phone number",
+                    "example": "+380123456789"
+                  },
+                  "adress": {
+                    "type": "string",
+                    "description": "Keeper's address",
+                    "example": "Kyiv, Ukraine"
+                  }
+                }
+              },
+              "owner": {
+                "type": "string",
+                "description": "Owner's unique ID",
+                "example": "64b7c7f9a19f4b2c5d8c1a9d"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Date when the advert was created",
+                "example": "2023-01-01T00:00:00.000Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Date when the advert was last updated",
+                "example": "2023-01-02T00:00:00.000Z"
+              }
+            }
+          }
+        }
+      },
+      "FilteredAdvertsResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddAdvertResponse"
+            },
+            "description": "Array of filtered adverts"
+          },
+          "tottal": {
+            "type": "integer",
+            "description": "Total number of matching adverts",
+            "example": 25
           }
         }
       }
