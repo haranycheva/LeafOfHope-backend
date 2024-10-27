@@ -1,5 +1,3 @@
-
-
 const sortAdverts = ( sortType) => {
   switch (sortType) {
     case "old":
