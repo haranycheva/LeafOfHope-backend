@@ -13,11 +13,16 @@ const getFilteredAdverts = async (req, res, next) => {
   const totalAdverts = await Advert.countDocuments({
     ...whatToFilter,
     name: nameReg,
+    active: true,
   });
-  const result = await Advert.find({ ...whatToFilter, name: nameReg }, "", {
-    skip: (page - 1) * limit,
-    limit,
-  }).sort(sortAdverts(sort));
+  const result = await Advert.find(
+    { ...whatToFilter, name: nameReg, active: true },
+    "",
+    {
+      skip: (page - 1) * limit,
+      limit,
+    }
+  ).sort(sortAdverts(sort));
   if (!result) {
     throw HttpError(400, `Not found`);
   }

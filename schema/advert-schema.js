@@ -26,6 +26,7 @@ export const editAdvertSchema = Joi.object({
   description: Joi.string(),
   way: Joi.string().valid("exchange", "give"),
   wish: Joi.string().allow(""),
+  active: Joi.boolean(),
   light: Joi.string().valid("many", "normal", "little"),
   humidity: Joi.string().valid("high", "normal", "low"),
   lifeDuration: Joi.string().valid("annual", "biennial", "perennial"),

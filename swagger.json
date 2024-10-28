@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Leaf Of Hope",
-    "version": "0.2",
+    "version": "0.3",
     "description": "The Leaf Of Hope database manages user profiles, plant details, and listings to facilitate plant search and exchange.",
     "contact": {
       "name": "",
@@ -208,54 +208,14 @@
         "summary": "Get filtered adverts",
         "parameters": [
           {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            },
-            "description": "Page number for pagination"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 10
-            },
-            "description": "Number of adverts per page"
-          },
-          {
-            "name": "name",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter by advert name (partial match)"
-          },
-          {
             "name": "sort",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "default": "new",
               "enum": ["new", "old", "start-alphabet", "end-alphabet"]
             },
-            "description": "Sort by field (e.g., 'name' or '-createdAt')"
-          },
-          {
-            "name": "way",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["exchange", "give"]
-            },
-            "description": "Filter by way of giving the plant"
+            "description": "Sorting options: newest, oldest, alphabetically ascending or descending"
           },
           {
             "name": "light",
@@ -265,27 +225,7 @@
               "type": "string",
               "enum": ["many", "normal", "little"]
             },
-            "description": "Filter by light requirements"
-          },
-          {
-            "name": "humidity",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["high", "normal", "low"]
-            },
-            "description": "Filter by humidity requirements"
-          },
-          {
-            "name": "lifeDuration",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["annual", "biennial", "perennial"]
-            },
-            "description": "Filter by plant's life duration"
+            "description": "Light requirements: many, normal, little"
           },
           {
             "name": "temperature",
@@ -293,9 +233,9 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["high", "normal", "low"]
+              "enum": ["low", "normal", "high"]
             },
-            "description": "Filter by temperature requirements"
+            "description": "Temperature preferences: low, normal, high"
           },
           {
             "name": "size",
@@ -305,7 +245,94 @@
               "type": "string",
               "enum": ["large", "medium", "small"]
             },
-            "description": "Filter by plant size"
+            "description": "Size of the plant: large, medium, small"
+          },
+          {
+            "name": "lifeDuration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["annual", "biennial", "perennial"]
+            },
+            "description": "Life duration: annual, biennial, perennial"
+          },
+          {
+            "name": "alergenicity",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Alergenicity: true if allergenic, false if not"
+          },
+          {
+            "name": "humidity",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["low", "normal", "high"]
+            },
+            "description": "Humidity requirements: low, normal, high"
+          },
+          {
+            "name": "attention",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["none", "little", "normal", "many"]
+            },
+            "description": "Attention required: none, little, normal, many"
+          },
+          {
+            "name": "survive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["none", "low", "normal", "high"]
+            },
+            "description": "Survival capability: none, low, normal, high"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["none", "good", "enough", "bad"]
+            },
+            "description": "Plant condition: none, good, enough, bad"
+          },
+          {
+            "name": "flowering",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Flowering: true if flowering, false if not"
+          },
+          {
+            "name": "growthRate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["none", "low", "normal", "high"]
+            },
+            "description": "Growth rate: none, low, normal, high"
+          },
+          {
+            "name": "edible",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Edibility: true if edible, false if not"
           }
         ],
         "responses": {
@@ -486,6 +513,15 @@
         "tags": ["Advert"],
         "summary": "Get user`s adverts",
         "security": [{ "Bearer": [] }],
+        "parameters": [          {
+          "name": "active",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          },
+          "description": "Weather advert is active"
+        }],
         "responses": {
           "200": {
             "description": "Adverts successfully retrieved",
@@ -1088,7 +1124,11 @@
             "format": "binary",
             "description": "Picture of the plant"
           },
-
+          "active": {
+            "type": "boolean",
+            "description": "Whether the advert is active",
+            "example": true
+          },
           "light": {
             "type": "string",
             "enum": ["many", "normal", "little"],
