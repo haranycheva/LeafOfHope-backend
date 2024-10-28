@@ -836,7 +836,7 @@
           "description": {
             "type": "string",
             "description": "Description of the advert",
-            "example": "Looking for a good home for this plant"
+            "example": "I hope you will like it"
           },
           "way": {
             "type": "string",
@@ -894,9 +894,14 @@
               }
             }
           },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the advert is active",
+            "example": true
+          },
           "wish": {
             "type": "string",
-            "description": "Wish or expected exchange item",
+            "description": "I would like to exhange it on some cactus",
             "example": "Peace lily"
           },
           "image": {
@@ -1179,7 +1184,7 @@
               "description": {
                 "type": "string",
                 "description": "Description of the advert",
-                "example": "Looking for a good home for this plant"
+                "example": "I hope you will like it"
               },
               "way": {
                 "type": "string",
@@ -1190,7 +1195,62 @@
               "wish": {
                 "type": "string",
                 "description": "Wish or expected exchange item",
-                "example": "Peace lily"
+                "example": "I would like to exhange it on some cactus"
+              },
+              "translated": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "object",
+                    "properties": {
+                      "transEng": {
+                        "type": "string",
+                        "description": "Name that is translated to English",
+                        "example": "Beautiful Monstera"
+                      },
+                      "transUa": {
+                        "type": "string",
+                        "description": "Name that is translated to Ukarainian",
+                        "example": "Прекрасна Монстера"
+                      }
+                    }
+                  },
+                  "description": {
+                    "type": "object",
+                    "properties": {
+                      "transEng": {
+                        "type": "string",
+                        "description": "Description that is translated to English",
+                        "example": "I hope you will like it"
+                      },
+                      "transUa": {
+                        "type": "string",
+                        "description": "Description that is translated to Ukarainian",
+                        "example": "Сподіваюсь, вам сподобається"
+                      }
+                    }
+                  },
+                  "wish": {
+                    "type": "object",
+                    "properties": {
+                      "transEng": {
+                        "type": "string",
+                        "description": "Wish that is translated to English",
+                        "example": "I would like to exhange it on some cactus"
+                      },
+                      "transUa": {
+                        "type": "string",
+                        "description": "Wish that is translated to Ukarainian",
+                        "example": "Я хотів обміняти це на якийсь кактус"
+                      }
+                    }
+                  }
+                }
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Whether the advert is active",
+                "example": true
               },
               "image": {
                 "type": "object",

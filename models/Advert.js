@@ -47,6 +47,10 @@ const advertSchema = new Schema(
         },
       },
     },
+    active: {
+      type: Boolean,
+      required: [true, "the active property is required"],
+    },
     image: {
       "small-250px": {
         type: String,

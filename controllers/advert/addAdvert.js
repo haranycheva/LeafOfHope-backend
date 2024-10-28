@@ -11,6 +11,7 @@ const addAdvert = async (req, res) => {
   const newAdvert = await Advert.create({
     ...reqBodyWithoutEmpty,
     translated,
+    active: true,
     keeper: {
       username: user.username,
       email: user.email,
