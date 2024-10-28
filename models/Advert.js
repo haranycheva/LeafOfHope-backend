@@ -52,6 +52,11 @@ const advertSchema = new Schema(
       required: [true, "the active property is required"],
     },
     image: {
+      "very-small-175px": {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+      },
       "small-250px": {
         type: String,
         default:
@@ -62,7 +67,7 @@ const advertSchema = new Schema(
         default:
           "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
       },
-      "large-500px": {
+      "large-400px": {
         type: String,
         default:
           "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg",
