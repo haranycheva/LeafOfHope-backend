@@ -4,7 +4,7 @@ import authorization from "../middleware/authorization.js";
 import upload from "../middleware/upload.js";
 import isValidId from "../middleware/isValidId.js";
 import {validateBody} from "../decorators/index.js";
-import { advertValidationSchema } from "../schema/advert-schema.js";
+import { advertValidationSchema, editAdvertSchema } from "../schema/advert-schema.js";
 
 const advertRouter = express.Router();
 
@@ -26,6 +26,7 @@ advertRouter.put(
   "/:id",
   upload.single("image"),
   authorization,
+  validateBody(editAdvertSchema),
   advertControllers.redactAdvert
 );
 
