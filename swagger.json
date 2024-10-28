@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Leaf Of Hope",
-    "version": "0.1",
+    "version": "0.2",
     "description": "The Leaf Of Hope database manages user profiles, plant details, and listings to facilitate plant search and exchange.",
     "contact": {
       "name": "",
@@ -843,6 +843,56 @@
             "enum": ["exchange", "give"],
             "description": "Way of giving the plant",
             "example": "exchange"
+          },
+          "translated": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "object",
+                "properties": {
+                  "transEng": {
+                    "type": "string",
+                    "description": "Name that is translated to English",
+                    "example": "Beautiful Monstera"
+                  },
+                  "transUa": {
+                    "type": "string",
+                    "description": "Name that is translated to Ukarainian",
+                    "example": "Прекрасна Монстера"
+                  }
+                }
+              },
+              "description": {
+                "type": "object",
+                "properties": {
+                  "transEng": {
+                    "type": "string",
+                    "description": "Description that is translated to English",
+                    "example": "I hope you will like it"
+                  },
+                  "transUa": {
+                    "type": "string",
+                    "description": "Description that is translated to Ukarainian",
+                    "example": "Сподіваюсь, вам сподобається"
+                  }
+                }
+              },
+              "wish": {
+                "type": "object",
+                "properties": {
+                  "transEng": {
+                    "type": "string",
+                    "description": "Wish that is translated to English",
+                    "example": "I would like to echange it on some cactus"
+                  },
+                  "transUa": {
+                    "type": "string",
+                    "description": "Wish that is translated to Ukarainian",
+                    "example": "Я хотів обміняти це на якийсь кактус"
+                  }
+                }
+              }
+            }
           },
           "wish": {
             "type": "string",

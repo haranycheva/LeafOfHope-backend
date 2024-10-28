@@ -21,18 +21,47 @@ const advertSchema = new Schema(
     wish: {
       type: String,
     },
+    translated: {
+      name: {
+        transEng: {
+          type: String,
+        },
+        transUa: {
+          type: String,
+        },
+      },
+      description: {
+        transEng: {
+          type: String,
+        },
+        transUa: {
+          type: String,
+        },
+      },
+      wish: {
+        transEng: {
+          type: String,
+        },
+        transUa: {
+          type: String,
+        },
+      },
+    },
     image: {
       "small-250px": {
         type: String,
-        default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
       },
       "medium-300px": {
         type: String,
-        default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
       },
       "large-500px": {
         type: String,
-        default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg",
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg",
       },
     },
     light: {
@@ -103,15 +132,18 @@ const advertSchema = new Schema(
       avatar: {
         "small-250px": {
           type: String,
-          default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
+          default:
+            "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
         },
         "medium-300px": {
           type: String,
-          default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
+          default:
+            "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
         },
         "large-500px": {
           type: String,
-          default: "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg",
+          default:
+            "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg",
         },
       },
       phone: {
