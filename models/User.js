@@ -25,22 +25,22 @@ const userSchema = new Schema(
       "very-small-175px": {
         type: String,
         default:
-          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
       },
       "small-250px": {
         type: String,
         default:
-          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
       },
       "medium-300px": {
         type: String,
         default:
-          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878869/leafofhopeAdverts/PlantPhoto_1_rvxaxr.jpg",
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
       },
       "large-400px": {
         type: String,
         default:
-          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728878963/leafofhopeAdverts/PlantPhoto_2_tsibgm.jpg",
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg",
       },
     },
     phone: {
@@ -57,7 +57,7 @@ const userSchema = new Schema(
       default: "",
     },
   },
-  { versionKey: false}
+  { versionKey: false }
 );
 userSchema.post("save", handleSaveError);
 userSchema.pre("findOneAndUpdate", preUpdate);
