@@ -42,7 +42,12 @@ const userSchema = new Schema(
         default:
           "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
       },
-      "large-400px": {
+      "big-400px": {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg",
+      },
+      "large-500px": {
         type: String,
         default:
           "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg",

@@ -15,6 +15,7 @@ const addPicture = async (req, folder) => {
       {width: 250, height: 250, crop: "scale"},
       {width: 300, height: 300, crop: "scale"},
       {width: 400, height: 400, crop: "scale"},
+      {width: 500, height: 500, crop: "scale"},
     ]
   });
   await fs.unlink(req.file.path);

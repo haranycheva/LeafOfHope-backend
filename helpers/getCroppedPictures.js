@@ -3,7 +3,8 @@ const imgProps = [
   "very-small-175px",
   "small-250px",
   "medium-300px",
-  "large-400px",
+  "big-400px",
+  "large-500px",
 ];
 const getCroppedPictures = ({ eager }) => {
   const result = {};
