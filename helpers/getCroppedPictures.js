@@ -1,4 +1,5 @@
 const imgProps = [
+  "tiny-100px",
   "very-small-175px",
   "small-250px",
   "medium-300px",

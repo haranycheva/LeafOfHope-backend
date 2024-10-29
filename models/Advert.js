@@ -52,6 +52,11 @@ const advertSchema = new Schema(
       required: [true, "the active property is required"],
     },
     image: {
+      "tiny-100px": {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_100,w_100/v1727414803/PlantPhoto_m5u0t8.jpg",
+      },
       "very-small-175px": {
         type: String,
         default:

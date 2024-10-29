@@ -22,6 +22,11 @@ const userSchema = new Schema(
       required: [true, "email is required"],
     },
     avatar: {
+      "tiny-100px": {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_100,h_100/v1727338464/user_default.jpg",
+      },
       "very-small-175px": {
         type: String,
         default:
