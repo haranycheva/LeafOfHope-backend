@@ -149,6 +149,16 @@ const advertSchema = new Schema(
         required: [true, "email is required"],
       },
       avatar: {
+        "tiny-100px": {
+          type: String,
+          default:
+            "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_100,h_100/v1727338464/user_default.jpg",
+        },
+        "very-small-175px": {
+          type: String,
+          default:
+            "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
+        },
         "small-250px": {
           type: String,
           default:
@@ -158,6 +168,11 @@ const advertSchema = new Schema(
           type: String,
           default:
             "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg",
+        },
+        "big-400px": {
+          type: String,
+          default:
+            "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg",
         },
         "large-500px": {
           type: String,
