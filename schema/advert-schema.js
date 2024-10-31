@@ -3,6 +3,7 @@ import Joi from "joi";
 export const advertValidationSchema = Joi.object({
   name: Joi.string().min(1).max(28).required(),
   description: Joi.string().allow(""),
+  langOfProps : Joi.string().valid("eng", "ua").required(),
   way: Joi.string().valid("exchange", "give").required(),
   wish: Joi.string().allow(""),
   light: Joi.string().valid("many", "normal", "little").required(),
@@ -25,6 +26,7 @@ export const editAdvertSchema = Joi.object({
   name: Joi.string().min(1).max(28),
   description: Joi.string(),
   way: Joi.string().valid("exchange", "give"),
+  langOfProps : Joi.string().valid("eng", "ua"),
   wish: Joi.string().allow(""),
   active: Joi.boolean(),
   light: Joi.string().valid("many", "normal", "little"),

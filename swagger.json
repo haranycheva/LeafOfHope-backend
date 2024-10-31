@@ -748,6 +748,7 @@
         "required": [
           "name",
           "way",
+          "langOfProps",
           "light",
           "humidity",
           "lifeDuration",
@@ -773,6 +774,12 @@
             "enum": ["exchange", "give"],
             "description": "Way of giving the plant",
             "example": "exchange"
+          },
+          "langOfProps": {
+            "type": "string",
+            "enum": ["eng", "ua"],
+            "description": "The default languege of plant characterictics",
+            "example": "ua"
           },
           "wish": {
             "type": "string",
@@ -879,6 +886,12 @@
             "enum": ["exchange", "give"],
             "description": "Way of giving the plant",
             "example": "exchange"
+          },
+          "langOfProps": {
+            "type": "string",
+            "enum": ["eng", "ua"],
+            "description": "The default languege of plant characterictics",
+            "example": "ua"
           },
           "translated": {
             "type": "object",
@@ -1114,6 +1127,12 @@
             "description": "Way of giving the plant",
             "example": "exchange"
           },
+          "langOfProps": {
+            "type": "string",
+            "enum": ["eng", "ua"],
+            "description": "The default languege of plant characterictics",
+            "example": "ua"
+          },
           "wish": {
             "type": "string",
             "description": "Wish or expected exchange item",
@@ -1231,6 +1250,12 @@
                 "enum": ["exchange", "give"],
                 "description": "Way of giving the plant",
                 "example": "exchange"
+              },
+              "langOfProps": {
+                "type": "string",
+                "enum": ["eng", "ua"],
+                "description": "The default languege of plant characterictics",
+                "example": "ua"
               },
               "wish": {
                 "type": "string",
