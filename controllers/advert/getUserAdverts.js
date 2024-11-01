@@ -1,4 +1,4 @@
-import {HttpError} from "../../helpers/index.js";
+import {HttpError, sortAdverts} from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
 
 const getUserAdverts = async (req, res, next) => {
