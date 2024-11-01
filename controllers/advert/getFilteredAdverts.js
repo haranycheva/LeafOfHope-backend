@@ -10,8 +10,7 @@ const getFilteredAdverts = async (req, res, next) => {
     ...whatToFilter
   } = req.query;
   const nameReg = new RegExp(name, "i");
-
-  const totalAdverts = await Advert.countDocuments({
+  const whatTofindObject = {
     ...whatToFilter,
     $or: [
       { name: nameReg },
@@ -19,23 +18,12 @@ const getFilteredAdverts = async (req, res, next) => {
       { "translated.name.transUa": nameReg },
     ],
     active: true,
-  });
-  const result = await Advert.find(
-    {
-      ...whatToFilter,
-      $or: [
-        { name: nameReg },
-        { "translated.name.transEng": nameReg },
-        { "translated.name.transUa": nameReg },
-      ],
-      active: true,
-    },
-    "",
-    {
-      skip: (page - 1) * limit,
-      limit,
-    }
-  ).sort(sortAdverts(sort));
+  };
+  const totalAdverts = await Advert.countDocuments(whatTofindObject);
+  const result = await Advert.find(whatTofindObject, "", {
+    skip: (page - 1) * limit,
+    limit,
+  }).sort(sortAdverts(sort));
   if (!result) {
     throw HttpError(400, `Not found`);
   }
