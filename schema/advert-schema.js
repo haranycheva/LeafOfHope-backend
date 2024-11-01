@@ -24,7 +24,7 @@ export const advertValidationSchema = Joi.object({
 
 export const editAdvertSchema = Joi.object({
   name: Joi.string().min(1).max(28),
-  description: Joi.string(),
+  description: Joi.string().allow(""),
   way: Joi.string().valid("exchange", "give"),
   lang : Joi.string().valid("en", "ua"),
   wish: Joi.string().allow(""),

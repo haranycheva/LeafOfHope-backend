@@ -791,7 +791,6 @@
             "format": "binary",
             "description": "Picture of the plant"
           },
-
           "light": {
             "type": "string",
             "enum": ["many", "normal", "little"],
