@@ -10,13 +10,26 @@ const getFilteredAdverts = async (req, res, next) => {
     ...whatToFilter
   } = req.query;
   const nameReg = new RegExp(name, "i");
+
   const totalAdverts = await Advert.countDocuments({
     ...whatToFilter,
-    name: nameReg,
+    $or: [
+      { name: nameReg },
+      { "translated.name.transEng": nameReg },
+      { "translated.name.transUa": nameReg },
+    ],
     active: true,
   });
   const result = await Advert.find(
-    { ...whatToFilter, name: nameReg, active: true },
+    {
+      ...whatToFilter,
+      $or: [
+        { name: nameReg },
+        { "translated.name.transEng": nameReg },
+        { "translated.name.transUa": nameReg },
+      ],
+      active: true,
+    },
     "",
     {
       skip: (page - 1) * limit,
