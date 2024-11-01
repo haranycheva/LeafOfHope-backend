@@ -49,7 +49,7 @@ const advertSchema = new Schema(
     },
     lang: {
       type: String,
-      enum: ["eng", "ua"],
+      enum: ["en", "ua"],
       required: [true, "the language property is required"]
     },
     active: {

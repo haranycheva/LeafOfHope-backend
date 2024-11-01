@@ -777,7 +777,7 @@
           },
           "lang": {
             "type": "string",
-            "enum": ["eng", "ua"],
+            "enum": ["en", "ua"],
             "description": "The default languege of plant characterictics",
             "example": "ua"
           },
@@ -889,7 +889,7 @@
           },
           "lang": {
             "type": "string",
-            "enum": ["eng", "ua"],
+            "enum": ["en", "ua"],
             "description": "The default languege of plant characterictics",
             "example": "ua"
           },
@@ -1129,7 +1129,7 @@
           },
           "lang": {
             "type": "string",
-            "enum": ["eng", "ua"],
+            "enum": ["en", "ua"],
             "description": "The default languege of plant characterictics",
             "example": "ua"
           },
@@ -1253,7 +1253,7 @@
               },
               "lang": {
                 "type": "string",
-                "enum": ["eng", "ua"],
+                "enum": ["en", "ua"],
                 "description": "The default languege of plant characterictics",
                 "example": "ua"
               },
