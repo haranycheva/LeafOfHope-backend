@@ -748,7 +748,7 @@
         "required": [
           "name",
           "way",
-          "langOfProps",
+          "lang",
           "light",
           "humidity",
           "lifeDuration",
@@ -775,7 +775,7 @@
             "description": "Way of giving the plant",
             "example": "exchange"
           },
-          "langOfProps": {
+          "lang": {
             "type": "string",
             "enum": ["eng", "ua"],
             "description": "The default languege of plant characterictics",
@@ -887,7 +887,7 @@
             "description": "Way of giving the plant",
             "example": "exchange"
           },
-          "langOfProps": {
+          "lang": {
             "type": "string",
             "enum": ["eng", "ua"],
             "description": "The default languege of plant characterictics",
@@ -1127,7 +1127,7 @@
             "description": "Way of giving the plant",
             "example": "exchange"
           },
-          "langOfProps": {
+          "lang": {
             "type": "string",
             "enum": ["eng", "ua"],
             "description": "The default languege of plant characterictics",
@@ -1251,7 +1251,7 @@
                 "description": "Way of giving the plant",
                 "example": "exchange"
               },
-              "langOfProps": {
+              "lang": {
                 "type": "string",
                 "enum": ["eng", "ua"],
                 "description": "The default languege of plant characterictics",

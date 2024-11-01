@@ -47,7 +47,7 @@ const advertSchema = new Schema(
         },
       },
     },
-    langOfProps: {
+    lang: {
       type: String,
       enum: ["eng", "ua"],
       required: [true, "the language property is required"]

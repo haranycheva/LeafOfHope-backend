@@ -6,6 +6,9 @@ const addAdvert = async (req, res) => {
   if (req.file) {
     req.body.image = await addPicture(req, "advert");
   }
+  if(!req.body?.lang){
+    req.body.lang = "ua"
+  }
   const reqBodyWithoutEmpty = removeEmptyProps(req.body)
   const translated = await translateAdvert(req.body)
   const newAdvert = await Advert.create({
