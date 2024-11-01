@@ -1,4 +1,4 @@
-const sortAdverts = ( sortType) => {
+const sortAdverts = (sortType) => {
   switch (sortType) {
     case "old":
       return { createdAt: 1 };

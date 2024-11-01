@@ -8,7 +8,7 @@ const getUserAdverts = async (req, res, next) => {
   const result = await Advert.find({owner: _id, active} , "", {
     skip: (page - 1) * limit,
     limit,
-  });
+  }).sort(sortAdverts("new"));
   if (!result) {
     throw HttpError(400, `Not found`);
   }
