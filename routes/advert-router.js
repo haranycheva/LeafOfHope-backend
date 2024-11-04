@@ -1,6 +1,6 @@
 import express from "express";
 import advertControllers from "../controllers/advert-controllers.js";
-import authorization from "../middleware/authorization.js";
+import { authorization } from "../middleware/index.js";
 import upload from "../middleware/upload.js";
 import isValidId from "../middleware/isValidId.js";
 import {validateBody} from "../decorators/index.js";
