@@ -60,6 +60,7 @@ const userSchema = new Schema(
     },
     adress: {
       type: String,
+      maxLength: 200,
       required: [true, "adress is required"],
     },
     token: {

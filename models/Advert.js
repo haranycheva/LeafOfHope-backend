@@ -12,6 +12,7 @@ const advertSchema = new Schema(
     },
     description: {
       type: String,
+      maxLength: 1000,
     },
     way: {
       type: String,
@@ -20,6 +21,7 @@ const advertSchema = new Schema(
     },
     wish: {
       type: String,
+      maxLength: 200,
     },
     translated: {
       name: {
@@ -193,6 +195,7 @@ const advertSchema = new Schema(
       },
       adress: {
         type: String,
+        maxLength: 60,
         ref: "user",
         required: [true, "adress is required"],
       },
