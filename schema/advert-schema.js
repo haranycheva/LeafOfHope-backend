@@ -2,10 +2,10 @@ import Joi from "joi";
 
 export const advertValidationSchema = Joi.object({
   name: Joi.string().min(1).max(28).required(),
-  description: Joi.string().allow(""),
+  description: Joi.string().max(1000).allow(""),
   lang : Joi.string().valid("en", "ua"),
   way: Joi.string().valid("exchange", "give").required(),
-  wish: Joi.string().allow(""),
+  wish: Joi.string().max(200).allow(""),
   light: Joi.string().valid("many", "normal", "little").required(),
   humidity: Joi.string().valid("high", "normal", "low").required(),
   lifeDuration: Joi.string()
@@ -24,10 +24,10 @@ export const advertValidationSchema = Joi.object({
 
 export const editAdvertSchema = Joi.object({
   name: Joi.string().min(1).max(28),
-  description: Joi.string().allow(""),
+  description: Joi.string().max(1000).allow(""),
   way: Joi.string().valid("exchange", "give"),
   lang : Joi.string().valid("en", "ua"),
-  wish: Joi.string().allow(""),
+  wish: Joi.string().max(200).allow(""),
   active: Joi.boolean(),
   light: Joi.string().valid("many", "normal", "little"),
   humidity: Joi.string().valid("high", "normal", "low"),
