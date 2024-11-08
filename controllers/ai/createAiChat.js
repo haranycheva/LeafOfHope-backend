@@ -1,5 +1,5 @@
 import { HttpError } from "../../helpers/index.js";
-import { AiChat } from "../../models/aiChat.js";
+import { AiChat } from "../../models/AiChat.js";
 import { defaultReq } from "../../openAi/defaults.js";
 import { getAiMessage } from "../../openAi/index.js";
 
