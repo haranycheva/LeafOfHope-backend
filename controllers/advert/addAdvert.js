@@ -10,6 +10,7 @@ const addAdvert = async (req, res) => {
     req.body.lang = "ua"
   }
   const reqBodyWithoutEmpty = removeEmptyProps(req.body)
+  console.log(reqBodyWithoutEmpty.description, reqBodyWithoutEmpty.description.length)
   const translated = await translateAdvert(req.body)
   const newAdvert = await Advert.create({
     ...reqBodyWithoutEmpty,
