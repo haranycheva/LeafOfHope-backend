@@ -1,6 +1,6 @@
 import { translate } from "google-translate-api-browser";
 
-const translateAdvert = async ({ name, description = "", wish = "" }) => {
+const translateAdvert = async ({ name = "", description = "", wish = "" }) => {
   const toTranslate = { name, description, wish };
   const translated = {};
   for (const key in toTranslate) {

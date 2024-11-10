@@ -1,4 +1,5 @@
-import {removeEmptyProps, addPicture, HttpError, translateAdvert} from "../../helpers/index.js";
+import {removeEmptyProps, addPicture, HttpError} from "../../helpers/index.js";
+import {translateAdvert} from "../../helpers/translation/index.js";
 import { Advert } from "../../models/Advert.js";
 
 const addAdvert = async (req, res) => {
