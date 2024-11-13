@@ -17,7 +17,7 @@ export const advertValidationSchema = Joi.object({
   height: Joi.string()
     .valid("dwarf", "low", "average", "high", "very high")
     .required(),
-  alergenicity: Joi.string().valid("available", "absent", "unknown").required(),
+  allergenicity: Joi.string().valid("available", "absent").allow(""),
   toxicity: Joi.string()
     .valid("very-poisonous", "highly-toxic", "toxic", "non-toxic")
     .required(),
@@ -31,7 +31,7 @@ export const advertValidationSchema = Joi.object({
   plantCondition: Joi.string().valid("conditioned", "unconditioned").required(),
   temperature: Joi.string().valid("heat-loving", "cold-resisted").required(),
   watering: Joi.string()
-    .valid("every three days", "every week", "every two weeks", "every month")
+    .valid("three days", "week", "two weeks", "month")
     .required(),
 });
 
@@ -53,7 +53,7 @@ export const editAdvertSchema = Joi.object({
     .valid("up to 0.5m", "up to 1m", "up to 2m", "over 2m")
     .allow(""),
   height: Joi.string().valid("dwarf", "low", "average", "high", "very high"),
-  alergenicity: Joi.string().valid("available", "absent", "unknown"),
+  allergenicity: Joi.string().valid("available", "absent").allow(""),
   toxicity: Joi.string().valid(
     "very-poisonous",
     "highly-toxic",
@@ -70,9 +70,9 @@ export const editAdvertSchema = Joi.object({
   plantCondition: Joi.string().valid("conditioned", "unconditioned"),
   temperature: Joi.string().valid("heat-loving", "cold-resisted"),
   watering: Joi.string().valid(
-    "every three days",
-    "every week",
-    "every two weeks",
-    "every month"
+    "three days",
+    "week",
+    "two weeks",
+    "month"
   ),
 });

@@ -223,9 +223,9 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["many", "normal", "little"]
+              "enum": ["light-loving", "relatively light-loving", "shade-tolerant"]
             },
-            "description": "Light requirements: many, normal, little"
+            "description": "How many light the plant is needed"
           },
           {
             "name": "temperature",
@@ -233,19 +233,19 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["low", "normal", "high"]
+              "enum": ["heat-loving", "cold-resisted"]
             },
-            "description": "Temperature preferences: low, normal, high"
+            "description": "Temperature preferences: heat-loving or cold-resisted"
           },
           {
-            "name": "size",
+            "name": "care",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["large", "medium", "small"]
+              "enum": ["picky", "unassuming"]
             },
-            "description": "Size of the plant: large, medium, small"
+            "description": "Plant care"
           },
           {
             "name": "lifeDuration",
@@ -253,67 +253,49 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["annual", "biennial", "perennial"]
+              "enum": ["short-lived", "long-lived"]
             },
-            "description": "Life duration: annual, biennial, perennial"
+            "description": "Life duration: short-lived or long-lived"
           },
           {
-            "name": "alergenicity",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            },
-            "description": "Alergenicity: true if allergenic, false if not"
-          },
-          {
-            "name": "humidity",
+            "name": "allergenicity",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["low", "normal", "high"]
+              "enum": ["available", "absent"]
             },
-            "description": "Humidity requirements: low, normal, high"
+            "description": "Allergenicity: availableabsent "
           },
           {
-            "name": "attention",
+            "name": "height",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["none", "little", "normal", "many"]
+              "enum": ["dwarf", "low", "average", "high", "very high"]
             },
-            "description": "Attention required: none, little, normal, many"
+            "description": "Height of the plant"
           },
           {
-            "name": "survive",
+            "name": "watering",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["none", "low", "normal", "high"]
+              "enum": ["three days", "week", "two weeks", "month"]
             },
-            "description": "Survival capability: none, low, normal, high"
+            "description": "How often plant needs to be watered"
           },
           {
-            "name": "state",
+            "name": "toxicity",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["none", "good", "enough", "bad"]
+              "enum": ["very-poisonous", "highly-toxic", "toxic", "non-toxic"]
             },
-            "description": "Plant condition: none, good, enough, bad"
-          },
-          {
-            "name": "flowering",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            },
-            "description": "Flowering: true if flowering, false if not"
+            "description": "Toxocity: very-poisonous, highly-toxic, toxic, non-toxic"
           },
           {
             "name": "growthRate",
@@ -321,18 +303,49 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["none", "low", "normal", "high"]
+              "enum": ["fast-growing", "medium-growing", "slow-growing"]
             },
-            "description": "Growth rate: none, low, normal, high"
+            "description": "How fast the plant grows"
           },
           {
-            "name": "edible",
+            "name": "windowDistance",
             "in": "query",
             "required": false,
             "schema": {
-              "type": "boolean"
+              "type": "string",
+              "enum": ["up to 0.5m", "up to 1m", "up to 2m", "over 2m"]
             },
-            "description": "Edibility: true if edible, false if not"
+            "description": "How far it needs to be from window"
+          },
+          {
+            "name": "substrate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["universal", "peat", "cactus", "orchids", "palm", "other"]
+            },
+            "description": "What substrate you have to use for this plant"
+          },
+          {
+            "name": "plantType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["flowering", "follage"]
+            },
+            "description": "Type of the plant"
+          },
+          {
+            "name": "plantCondition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["conditioned", "unconditioned"]
+            },
+            "description": "Plant condition"
           }
         ],
         "responses": {
@@ -755,7 +768,6 @@
           "lifeDuration",
           "temperature",
           "height",
-          "alergenicity",
           "toxicity",
           "plantType",
           "plantCondition"
@@ -831,22 +843,22 @@
             "description": "Size of the plant",
             "example": "average"
           },
-          "alergenicity": {
+          "allergenicity": {
             "type": "string",
-            "enum": ["available", "absent", "unknown"],
+            "enum": ["available", "absent"],
             "description": "Whether the plant is allergenic",
             "example": "absent"
           },
           "watering": {
             "type": "string",
             "enum": [
-              "every three days",
-              "every week",
-              "every two weeks",
-              "every month"
+              "three days",
+              "week",
+              "two weeks",
+              "month"
             ],
             "description": "Watering frequency",
-            "example": "every week"
+            "example": "week"
           },
           "toxicity": {
             "type": "string",
@@ -1030,22 +1042,22 @@
             "description": "Size of the plant",
             "example": "average"
           },
-          "alergenicity": {
+          "allergenicity": {
             "type": "string",
-            "enum": ["available", "absent", "unknown"],
+            "enum": ["available", "absent"],
             "description": "Whether the plant is allergenic",
             "example": "absent"
           },
           "watering": {
             "type": "string",
             "enum": [
-              "every three days",
-              "every week",
-              "every two weeks",
-              "every month"
+              "three days",
+              "week",
+              "two weeks",
+              "month"
             ],
             "description": "Watering frequency",
-            "example": "every week"
+            "example": "week"
           },
           "toxicity": {
             "type": "string",
@@ -1223,22 +1235,22 @@
             "description": "Size of the plant",
             "example": "average"
           },
-          "alergenicity": {
+          "allergenicity": {
             "type": "string",
-            "enum": ["available", "absent", "unknown"],
+            "enum": ["available", "absent"],
             "description": "Whether the plant is allergenic",
             "example": "absent"
           },
           "watering": {
             "type": "string",
             "enum": [
-              "every three days",
-              "every week",
-              "every two weeks",
-              "every month"
+              "three days",
+              "week",
+              "two weeks",
+              "month"
             ],
             "description": "Watering frequency",
-            "example": "every week"
+            "example": "week"
           },
           "toxicity": {
             "type": "string",
@@ -1430,22 +1442,22 @@
                 "description": "Size of the plant",
                 "example": "average"
               },
-              "alergenicity": {
+              "allergenicity": {
                 "type": "string",
-                "enum": ["available", "absent", "unknown"],
+                "enum": ["available", "absent"],
                 "description": "Whether the plant is allergenic",
                 "example": "absent"
               },
               "watering": {
                 "type": "string",
                 "enum": [
-                  "every three days",
-                  "every week",
-                  "every two weeks",
-                  "every month"
+                  "three days",
+                  "week",
+                  "two weeks",
+                  "month"
                 ],
                 "description": "Watering frequency",
-                "example": "every week"
+                "example": "week"
               },
               "toxicity": {
                 "type": "string",

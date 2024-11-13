@@ -115,14 +115,13 @@ const advertSchema = new Schema(
       enum: ["dwarf", "low", "average", "high", "very high"],
       required: [true, "the size property is required"],
     },
-    alergenicity: {
+    allergenicity: {
       type: String,
-      enum: ["available", "absent", "unknown"],
-      required: [true, "the alergenicity property is required"],
+      enum: ["available", "absent"],
     },
     watering: {
       type: String,
-      enum: ["every three days", "every week", "every two weeks", "every month"],
+      enum: ["three days", "week", "two weeks", "month"],
       required: [true, "the watering property is required"],
     },
     toxicity: {
