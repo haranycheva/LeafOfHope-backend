@@ -92,54 +92,64 @@ const advertSchema = new Schema(
     },
     light: {
       type: String,
-      enum: ["many", "normal", "little"],
+      enum: ["light-loving", "relatively light-loving", "shade-tolerant"],
       required: [true, "the light property is required"],
     },
-    humidity: {
+    care: {
       type: String,
-      enum: ["high", "normal", "low"],
-      required: [true, "the humidity property is required"],
+      enum: ["picky", "unassuming"],
     },
     lifeDuration: {
       type: String,
-      enum: ["annual", "biennial", "perennial"],
+      enum: ["short-lived", "long-lived"],
       required: [true, "the lifeDuration property is required"],
     },
     temperature: {
       type: String,
-      enum: ["high", "normal", "low"],
+      enum: ["heat-loving", "cold-resisted"],
       required: [true, "the temperature property is required"],
     },
-    size: {
+    height: {
       type: String,
-      enum: ["large", "medium", "small"],
+      enum: ["dwarf", "low", "average", "high", "very high"],
       required: [true, "the size property is required"],
     },
     alergenicity: {
-      type: Boolean,
+      type: String,
+      enum: ["available", "absent", "unknown"],
       required: [true, "the alergenicity property is required"],
     },
-    attention: {
+    watering: {
       type: String,
-      enum: ["many", "normal", "little"],
+      enum: ["every three days", "every week", "every two weeks", "every month"],
+      required: [true, "the watering property is required"],
     },
-    survive: {
+    toxicity: {
       type: String,
-      enum: ["high", "normal", "low"],
-    },
-    state: {
-      type: String,
-      enum: ["good", "bad", "enough"],
-    },
-    flowering: {
-      type: Boolean,
+      enum: ["very-poisonous", "highly-toxic", "toxic", "non-toxic"],
+      required: [true, "the toxicity property is required"],
     },
     growthRate: {
       type: String,
-      enum: ["high", "normal", "low"],
+      enum: ["fast-growing", "medium-growing", "slow-growing"],
     },
-    edible: {
-      type: Boolean,
+    windowDistance: {
+      type: String,
+      enum: ["up to 0.5m", "up to 1m", "up to 2m", "over 2m"],
+    },
+    substrate: {
+      type: String,
+      enum: ["universal", "peat", "cactus", "orchids", "palm", "other"],
+    },
+    plantType: {
+      type: String,
+      enum: ["flowering", "follage"],
+      required: [true, "the plantType property is required"],
+    },
+    plantCondition: {
+      type: String,
+      enum: ["conditioned", "unconditioned"],
+      required: [true, "the plantCondition property is required"],
     },
     keeper: {
       username: {

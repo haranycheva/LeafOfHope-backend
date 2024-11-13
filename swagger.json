@@ -513,15 +513,17 @@
         "tags": ["Advert"],
         "summary": "Get user`s adverts",
         "security": [{ "Bearer": [] }],
-        "parameters": [          {
-          "name": "active",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "boolean"
-          },
-          "description": "Weather advert is active"
-        }],
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Weather advert is active"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Adverts successfully retrieved",
@@ -750,11 +752,13 @@
           "way",
           "lang",
           "light",
-          "humidity",
           "lifeDuration",
           "temperature",
-          "size",
-          "alergenicity"
+          "height",
+          "alergenicity",
+          "toxicity",
+          "plantType",
+          "plantCondition"
         ],
         "properties": {
           "name": {
@@ -767,6 +771,7 @@
           "description": {
             "type": "string",
             "description": "Advert description",
+            "maxLength": 1000,
             "example": "Looking for a good home for this plant"
           },
           "way": {
@@ -778,12 +783,13 @@
           "lang": {
             "type": "string",
             "enum": ["en", "ua"],
-            "description": "The default languege of plant characterictics",
+            "description": "The default language of plant characteristics",
             "example": "ua"
           },
           "wish": {
             "type": "string",
             "description": "Wish or expected exchange item",
+            "maxLength": 200,
             "example": "Peace lily"
           },
           "image": {
@@ -793,72 +799,90 @@
           },
           "light": {
             "type": "string",
-            "enum": ["many", "normal", "little"],
+            "enum": [
+              "light-loving",
+              "relatively light-loving",
+              "shade-tolerant"
+            ],
             "description": "Light requirements",
-            "example": "normal"
+            "example": "light-loving"
           },
-          "humidity": {
+          "care": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Humidity requirements",
-            "example": "high"
+            "enum": ["picky", "unassuming"],
+            "description": "Level of care needed",
+            "example": "unassuming"
           },
           "lifeDuration": {
             "type": "string",
-            "enum": ["annual", "biennial", "perennial"],
+            "enum": ["short-lived", "long-lived"],
             "description": "Plant's life duration",
-            "example": "perennial"
+            "example": "long-lived"
           },
           "temperature": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
+            "enum": ["heat-loving", "cold-resisted"],
             "description": "Preferred temperature",
-            "example": "normal"
+            "example": "heat-loving"
           },
-          "size": {
+          "height": {
             "type": "string",
-            "enum": ["large", "medium", "small"],
+            "enum": ["dwarf", "low", "average", "high", "very high"],
             "description": "Size of the plant",
-            "example": "medium"
+            "example": "average"
           },
           "alergenicity": {
-            "type": "boolean",
+            "type": "string",
+            "enum": ["available", "absent", "unknown"],
             "description": "Whether the plant is allergenic",
-            "example": false
+            "example": "absent"
           },
-          "attention": {
+          "watering": {
             "type": "string",
-            "enum": ["many", "normal", "little"],
-            "description": "Amount of attention required",
-            "example": "normal"
+            "enum": [
+              "every three days",
+              "every week",
+              "every two weeks",
+              "every month"
+            ],
+            "description": "Watering frequency",
+            "example": "every week"
           },
-          "survive": {
+          "toxicity": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Survival capability",
-            "example": "high"
-          },
-          "state": {
-            "type": "string",
-            "enum": ["good", "bad", "enough"],
-            "description": "State of the plant",
-            "example": "good"
-          },
-          "flowering": {
-            "type": "boolean",
-            "description": "Whether the plant flowers",
-            "example": true
+            "enum": ["very-poisonous", "highly-toxic", "toxic", "non-toxic"],
+            "description": "Whether the plant is toxic",
+            "example": "non-toxic"
           },
           "growthRate": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
+            "enum": ["fast-growing", "medium-growing", "slow-growing"],
             "description": "Growth rate of the plant",
-            "example": "normal"
+            "example": "medium-growing"
           },
-          "edible": {
-            "type": "boolean",
-            "description": "Whether the plant is edible",
-            "example": false
+          "windowDistance": {
+            "type": "string",
+            "enum": ["up to 0.5m", "up to 1m", "up to 2m", "over 2m"],
+            "description": "Recommended distance from a window",
+            "example": "up to 1m"
+          },
+          "substrate": {
+            "type": "string",
+            "enum": ["universal", "peat", "cactus", "orchids", "palm", "other"],
+            "description": "Preferred substrate for the plant",
+            "example": "universal"
+          },
+          "plantType": {
+            "type": "string",
+            "enum": ["flowering", "follage"],
+            "description": "Type of plant",
+            "example": "flowering"
+          },
+          "plantCondition": {
+            "type": "string",
+            "enum": ["conditioned", "unconditioned"],
+            "description": "Condition of the plant",
+            "example": "conditioned"
           }
         }
       },
@@ -974,72 +998,90 @@
           },
           "light": {
             "type": "string",
-            "enum": ["many", "normal", "little"],
+            "enum": [
+              "light-loving",
+              "relatively light-loving",
+              "shade-tolerant"
+            ],
             "description": "Light requirements",
-            "example": "normal"
+            "example": "light-loving"
           },
-          "humidity": {
+          "care": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Humidity requirements",
-            "example": "high"
+            "enum": ["picky", "unassuming"],
+            "description": "Level of care needed",
+            "example": "unassuming"
           },
           "lifeDuration": {
             "type": "string",
-            "enum": ["annual", "biennial", "perennial"],
-            "description": "Life duration of the plant",
-            "example": "perennial"
+            "enum": ["short-lived", "long-lived"],
+            "description": "Plant's life duration",
+            "example": "long-lived"
           },
           "temperature": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Temperature requirements",
-            "example": "normal"
+            "enum": ["heat-loving", "cold-resisted"],
+            "description": "Preferred temperature",
+            "example": "heat-loving"
           },
-          "size": {
+          "height": {
             "type": "string",
-            "enum": ["large", "medium", "small"],
+            "enum": ["dwarf", "low", "average", "high", "very high"],
             "description": "Size of the plant",
-            "example": "medium"
+            "example": "average"
           },
           "alergenicity": {
-            "type": "boolean",
+            "type": "string",
+            "enum": ["available", "absent", "unknown"],
             "description": "Whether the plant is allergenic",
-            "example": false
+            "example": "absent"
           },
-          "attention": {
+          "watering": {
             "type": "string",
-            "enum": ["many", "normal", "little"],
-            "description": "Attention required for the plant",
-            "example": "normal"
+            "enum": [
+              "every three days",
+              "every week",
+              "every two weeks",
+              "every month"
+            ],
+            "description": "Watering frequency",
+            "example": "every week"
           },
-          "survive": {
+          "toxicity": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Survival capability of the plant",
-            "example": "high"
-          },
-          "state": {
-            "type": "string",
-            "enum": ["good", "bad", "enough"],
-            "description": "Current state of the plant",
-            "example": "good"
-          },
-          "flowering": {
-            "type": "boolean",
-            "description": "Indicates if the plant flowers",
-            "example": true
+            "enum": ["very-poisonous", "highly-toxic", "toxic", "non-toxic"],
+            "description": "Whether the plant is toxic",
+            "example": "non-toxic"
           },
           "growthRate": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
+            "enum": ["fast-growing", "medium-growing", "slow-growing"],
             "description": "Growth rate of the plant",
-            "example": "normal"
+            "example": "medium-growing"
           },
-          "edible": {
-            "type": "boolean",
-            "description": "Indicates if the plant is edible",
-            "example": false
+          "windowDistance": {
+            "type": "string",
+            "enum": ["up to 0.5m", "up to 1m", "up to 2m", "over 2m"],
+            "description": "Recommended distance from a window",
+            "example": "up to 1m"
+          },
+          "substrate": {
+            "type": "string",
+            "enum": ["universal", "peat", "cactus", "orchids", "palm", "other"],
+            "description": "Preferred substrate for the plant",
+            "example": "universal"
+          },
+          "plantType": {
+            "type": "string",
+            "enum": ["flowering", "follage"],
+            "description": "Type of plant",
+            "example": "flowering"
+          },
+          "plantCondition": {
+            "type": "string",
+            "enum": ["conditioned", "unconditioned"],
+            "description": "Condition of the plant",
+            "example": "conditioned"
           },
           "keeper": {
             "type": "object",
@@ -1149,72 +1191,90 @@
           },
           "light": {
             "type": "string",
-            "enum": ["many", "normal", "little"],
+            "enum": [
+              "light-loving",
+              "relatively light-loving",
+              "shade-tolerant"
+            ],
             "description": "Light requirements",
-            "example": "normal"
+            "example": "light-loving"
           },
-          "humidity": {
+          "care": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Humidity requirements",
-            "example": "high"
+            "enum": ["picky", "unassuming"],
+            "description": "Level of care needed",
+            "example": "unassuming"
           },
           "lifeDuration": {
             "type": "string",
-            "enum": ["annual", "biennial", "perennial"],
+            "enum": ["short-lived", "long-lived"],
             "description": "Plant's life duration",
-            "example": "perennial"
+            "example": "long-lived"
           },
           "temperature": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
+            "enum": ["heat-loving", "cold-resisted"],
             "description": "Preferred temperature",
-            "example": "normal"
+            "example": "heat-loving"
           },
-          "size": {
+          "height": {
             "type": "string",
-            "enum": ["large", "medium", "small"],
+            "enum": ["dwarf", "low", "average", "high", "very high"],
             "description": "Size of the plant",
-            "example": "medium"
+            "example": "average"
           },
           "alergenicity": {
-            "type": "boolean",
+            "type": "string",
+            "enum": ["available", "absent", "unknown"],
             "description": "Whether the plant is allergenic",
-            "example": false
+            "example": "absent"
           },
-          "attention": {
+          "watering": {
             "type": "string",
-            "enum": ["many", "normal", "little"],
-            "description": "Amount of attention required",
-            "example": "normal"
+            "enum": [
+              "every three days",
+              "every week",
+              "every two weeks",
+              "every month"
+            ],
+            "description": "Watering frequency",
+            "example": "every week"
           },
-          "survive": {
+          "toxicity": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
-            "description": "Survival capability",
-            "example": "high"
-          },
-          "state": {
-            "type": "string",
-            "enum": ["good", "bad", "enough"],
-            "description": "State of the plant",
-            "example": "good"
-          },
-          "flowering": {
-            "type": "boolean",
-            "description": "Whether the plant flowers",
-            "example": true
+            "enum": ["very-poisonous", "highly-toxic", "toxic", "non-toxic"],
+            "description": "Whether the plant is toxic",
+            "example": "non-toxic"
           },
           "growthRate": {
             "type": "string",
-            "enum": ["high", "normal", "low"],
+            "enum": ["fast-growing", "medium-growing", "slow-growing"],
             "description": "Growth rate of the plant",
-            "example": "normal"
+            "example": "medium-growing"
           },
-          "edible": {
-            "type": "boolean",
-            "description": "Whether the plant is edible",
-            "example": false
+          "windowDistance": {
+            "type": "string",
+            "enum": ["up to 0.5m", "up to 1m", "up to 2m", "over 2m"],
+            "description": "Recommended distance from a window",
+            "example": "up to 1m"
+          },
+          "substrate": {
+            "type": "string",
+            "enum": ["universal", "peat", "cactus", "orchids", "palm", "other"],
+            "description": "Preferred substrate for the plant",
+            "example": "universal"
+          },
+          "plantType": {
+            "type": "string",
+            "enum": ["flowering", "follage"],
+            "description": "Type of plant",
+            "example": "flowering"
+          },
+          "plantCondition": {
+            "type": "string",
+            "enum": ["conditioned", "unconditioned"],
+            "description": "Condition of the plant",
+            "example": "conditioned"
           }
         }
       },
@@ -1338,72 +1398,102 @@
               },
               "light": {
                 "type": "string",
-                "enum": ["many", "normal", "little"],
+                "enum": [
+                  "light-loving",
+                  "relatively light-loving",
+                  "shade-tolerant"
+                ],
                 "description": "Light requirements",
-                "example": "normal"
+                "example": "light-loving"
               },
-              "humidity": {
+              "care": {
                 "type": "string",
-                "enum": ["high", "normal", "low"],
-                "description": "Humidity requirements",
-                "example": "high"
+                "enum": ["picky", "unassuming"],
+                "description": "Level of care needed",
+                "example": "unassuming"
               },
               "lifeDuration": {
                 "type": "string",
-                "enum": ["annual", "biennial", "perennial"],
-                "description": "Life duration of the plant",
-                "example": "perennial"
+                "enum": ["short-lived", "long-lived"],
+                "description": "Plant's life duration",
+                "example": "long-lived"
               },
               "temperature": {
                 "type": "string",
-                "enum": ["high", "normal", "low"],
-                "description": "Temperature requirements",
-                "example": "normal"
+                "enum": ["heat-loving", "cold-resisted"],
+                "description": "Preferred temperature",
+                "example": "heat-loving"
               },
-              "size": {
+              "height": {
                 "type": "string",
-                "enum": ["large", "medium", "small"],
+                "enum": ["dwarf", "low", "average", "high", "very high"],
                 "description": "Size of the plant",
-                "example": "medium"
+                "example": "average"
               },
               "alergenicity": {
-                "type": "boolean",
+                "type": "string",
+                "enum": ["available", "absent", "unknown"],
                 "description": "Whether the plant is allergenic",
-                "example": false
+                "example": "absent"
               },
-              "attention": {
+              "watering": {
                 "type": "string",
-                "enum": ["many", "normal", "little"],
-                "description": "Attention required for the plant",
-                "example": "normal"
+                "enum": [
+                  "every three days",
+                  "every week",
+                  "every two weeks",
+                  "every month"
+                ],
+                "description": "Watering frequency",
+                "example": "every week"
               },
-              "survive": {
+              "toxicity": {
                 "type": "string",
-                "enum": ["high", "normal", "low"],
-                "description": "Survival capability of the plant",
-                "example": "high"
-              },
-              "state": {
-                "type": "string",
-                "enum": ["good", "bad", "enough"],
-                "description": "Current state of the plant",
-                "example": "good"
-              },
-              "flowering": {
-                "type": "boolean",
-                "description": "Indicates if the plant flowers",
-                "example": true
+                "enum": [
+                  "very-poisonous",
+                  "highly-toxic",
+                  "toxic",
+                  "non-toxic"
+                ],
+                "description": "Whether the plant is toxic",
+                "example": "non-toxic"
               },
               "growthRate": {
                 "type": "string",
-                "enum": ["high", "normal", "low"],
+                "enum": ["fast-growing", "medium-growing", "slow-growing"],
                 "description": "Growth rate of the plant",
-                "example": "normal"
+                "example": "medium-growing"
               },
-              "edible": {
-                "type": "boolean",
-                "description": "Indicates if the plant is edible",
-                "example": false
+              "windowDistance": {
+                "type": "string",
+                "enum": ["up to 0.5m", "up to 1m", "up to 2m", "over 2m"],
+                "description": "Recommended distance from a window",
+                "example": "up to 1m"
+              },
+              "substrate": {
+                "type": "string",
+                "enum": [
+                  "universal",
+                  "peat",
+                  "cactus",
+                  "orchids",
+                  "palm",
+                  "other"
+                ],
+                "description": "Preferred substrate for the plant",
+                "example": "universal"
+              },
+              "plantType": {
+                "type": "string",
+                "enum": ["flowering", "follage"],
+                "description": "Type of plant",
+                "example": "flowering"
+              },
+              "plantCondition": {
+                "type": "string",
+                "enum": ["conditioned", "unconditioned"],
+                "description": "Condition of the plant",
+                "example": "conditioned"
               },
               "keeper": {
                 "type": "object",

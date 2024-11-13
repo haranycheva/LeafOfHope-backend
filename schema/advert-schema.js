@@ -3,42 +3,76 @@ import Joi from "joi";
 export const advertValidationSchema = Joi.object({
   name: Joi.string().min(1).max(28).required(),
   description: Joi.string().max(1000).allow(""),
-  lang : Joi.string().valid("en", "ua"),
+  lang: Joi.string().valid("en", "ua"),
   way: Joi.string().valid("exchange", "give").required(),
   wish: Joi.string().max(200).allow(""),
-  light: Joi.string().valid("many", "normal", "little").required(),
-  humidity: Joi.string().valid("high", "normal", "low").required(),
-  lifeDuration: Joi.string()
-    .valid("annual", "biennial", "perennial")
+  light: Joi.string()
+    .valid("light-loving", "relatively light-loving", "shade-tolerant")
     .required(),
-  temperature: Joi.string().valid("high", "normal", "low").required(),
-  size: Joi.string().valid("large", "medium", "small").required(),
-  alergenicity: Joi.boolean().required(),
-  attention: Joi.string().valid("many", "normal", "little", ""),
-  survive: Joi.string().valid("high", "normal", "low", ""),
-  state: Joi.string().valid("good", "bad", "enough", ""),
-  flowering: Joi.boolean().allow(""),
-  growthRate: Joi.string().valid("high", "normal", "low", ""),
-  edible: Joi.boolean().allow(""),
+  care: Joi.string().valid("picky", "unassuming").allow(""),
+  lifeDuration: Joi.string().valid("short-lived", "long-lived").required(),
+  windowDistance: Joi.string()
+    .valid("up to 0.5m", "up to 1m", "up to 2m", "over 2m")
+    .allow(""),
+  height: Joi.string()
+    .valid("dwarf", "low", "average", "high", "very high")
+    .required(),
+  alergenicity: Joi.string().valid("available", "absent", "unknown").required(),
+  toxicity: Joi.string()
+    .valid("very-poisonous", "highly-toxic", "toxic", "non-toxic")
+    .required(),
+  growthRate: Joi.string()
+    .valid("fast-growing", "medium-growing", "slow-growing")
+    .allow(""),
+  substrate: Joi.string()
+    .valid("universal", "peat", "cactus", "orchids", "palm", "other")
+    .allow(""),
+  plantType: Joi.string().valid("flowering", "follage").required(),
+  plantCondition: Joi.string().valid("conditioned", "unconditioned").required(),
+  temperature: Joi.string().valid("heat-loving", "cold-resisted").required(),
+  watering: Joi.string()
+    .valid("every three days", "every week", "every two weeks", "every month")
+    .required(),
 });
 
 export const editAdvertSchema = Joi.object({
   name: Joi.string().min(1).max(28),
   description: Joi.string().max(1000).allow(""),
   way: Joi.string().valid("exchange", "give"),
-  lang : Joi.string().valid("en", "ua"),
+  lang: Joi.string().valid("en", "ua"),
   wish: Joi.string().max(200).allow(""),
   active: Joi.boolean(),
-  light: Joi.string().valid("many", "normal", "little"),
-  humidity: Joi.string().valid("high", "normal", "low"),
-  lifeDuration: Joi.string().valid("annual", "biennial", "perennial"),
-  temperature: Joi.string().valid("high", "normal", "low"),
-  size: Joi.string().valid("large", "medium", "small"),
-  alergenicity: Joi.boolean(),
-  attention: Joi.string().valid("many", "normal", "little", ""),
-  survive: Joi.string().valid("high", "normal", "low", ""),
-  state: Joi.string().valid("good", "bad", "enough", ""),
-  flowering: Joi.boolean().allow(""),
-  growthRate: Joi.string().valid("high", "normal", "low", ""),
-  edible: Joi.boolean().allow(""),
+  light: Joi.string().valid(
+    "light-loving",
+    "relatively light-loving",
+    "shade-tolerant"
+  ),
+  care: Joi.string().valid("picky", "unassuming").allow(""),
+  lifeDuration: Joi.string().valid("short-lived", "long-lived"),
+  windowDistance: Joi.string()
+    .valid("up to 0.5m", "up to 1m", "up to 2m", "over 2m")
+    .allow(""),
+  height: Joi.string().valid("dwarf", "low", "average", "high", "very high"),
+  alergenicity: Joi.string().valid("available", "absent", "unknown"),
+  toxicity: Joi.string().valid(
+    "very-poisonous",
+    "highly-toxic",
+    "toxic",
+    "non-toxic"
+  ),
+  growthRate: Joi.string()
+    .valid("fast-growing", "medium-growing", "slow-growing")
+    .allow(""),
+  substrate: Joi.string()
+    .valid("universal", "peat", "cactus", "orchids", "palm", "other")
+    .allow(""),
+  plantType: Joi.string().valid("flowering", "follage"),
+  plantCondition: Joi.string().valid("conditioned", "unconditioned"),
+  temperature: Joi.string().valid("heat-loving", "cold-resisted"),
+  watering: Joi.string().valid(
+    "every three days",
+    "every week",
+    "every two weeks",
+    "every month"
+  ),
 });
