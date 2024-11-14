@@ -10,7 +10,7 @@ export const advertValidationSchema = Joi.object({
     .valid("light-loving", "relatively light-loving", "shade-tolerant")
     .required(),
   care: Joi.string().valid("picky", "unassuming").allow(""),
-  lifeDuration: Joi.string().valid("short-lived", "long-lived").required(),
+  lifeDuration: Joi.string().valid("short-lived", "long-lived").allow(""),
   windowDistance: Joi.string()
     .valid("up to 0.5m", "up to 1m", "up to 2m", "over 2m")
     .allow(""),
@@ -48,7 +48,7 @@ export const editAdvertSchema = Joi.object({
     "shade-tolerant"
   ),
   care: Joi.string().valid("picky", "unassuming").allow(""),
-  lifeDuration: Joi.string().valid("short-lived", "long-lived"),
+  lifeDuration: Joi.string().valid("short-lived", "long-lived").allow(""),
   windowDistance: Joi.string()
     .valid("up to 0.5m", "up to 1m", "up to 2m", "over 2m")
     .allow(""),

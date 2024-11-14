@@ -103,7 +103,6 @@ const advertSchema = new Schema(
     lifeDuration: {
       type: String,
       enum: ["short-lived", "long-lived"],
-      required: [true, "the lifeDuration property is required"],
     },
     temperature: {
       type: String,
