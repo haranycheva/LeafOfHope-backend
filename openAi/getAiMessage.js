@@ -11,7 +11,7 @@ const getAiMessage = async (messageHistory, lang) => {
     model: "gpt-4o",
     messages: messageHistory,
   });
-  return { content: completion.choices[0].message, role: "ai" };
+  return { content: completion.choices[0].message.content, role: "assistant" };
 };
 
 export default getAiMessage

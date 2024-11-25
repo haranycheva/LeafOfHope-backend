@@ -5,7 +5,7 @@ const messageSchema = new Schema(
   {
     role: {
       type: String,
-      enum: ["system", "ai", "user"],
+      enum: [, "assistant", "user"],
       required: true,
     },
     content: {
@@ -20,7 +20,7 @@ const messageForAiSchema = new Schema(
   {
     role: {
       type: String,
-      enum: ["system", "ai", "user"],
+      enum: ["system", "assistant", "user"],
       required: true,
     },
     content: {
