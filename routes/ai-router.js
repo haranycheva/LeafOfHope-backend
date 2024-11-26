@@ -6,5 +6,6 @@ const aiRouter = express.Router();
 
 aiRouter.post("/", authorization, aiControllers.createAiChat);
 aiRouter.put("/", authorization, aiControllers.sendMessageToAi);
+aiRouter.get("/", authorization, aiControllers.getAiChat);
 
 export default aiRouter;

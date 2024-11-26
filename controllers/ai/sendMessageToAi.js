@@ -4,7 +4,6 @@ import { getAiMessage } from "../../openAi/index.js";
 const sendMessageToAi = async (req, res, next) => {
   const { lang, message: userMessage } = req.body;
   const user = req.user;
-  console.log(req.body)
   const aiChat = await AiChat.findOne({ owner: user._id });
   if (!aiChat) {
     throw HttpError(404, "User`s chat does not exist");
