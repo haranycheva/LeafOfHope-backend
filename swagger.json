@@ -29,6 +29,10 @@
     {
       "name": "Advert",
       "description": "Advert endpoints"
+    },
+    {
+      "name": "AiChat",
+      "description": "AiChat endpoints"
     }
   ],
   "paths": {
@@ -223,7 +227,11 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["light-loving", "relatively light-loving", "shade-tolerant"]
+              "enum": [
+                "light-loving",
+                "relatively light-loving",
+                "shade-tolerant"
+              ]
             },
             "description": "How many light the plant is needed"
           },
@@ -323,7 +331,14 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["universal", "peat", "cactus", "orchids", "palm", "other"]
+              "enum": [
+                "universal",
+                "peat",
+                "cactus",
+                "orchids",
+                "palm",
+                "other"
+              ]
             },
             "description": "What substrate you have to use for this plant"
           },
@@ -550,6 +565,83 @@
           },
           "401": {
             "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "api/ai-chat/": {
+      "get": {
+        "tags": ["AiChat"],
+        "summary": "Get user`s ai chat",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createChatResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Can not find ai chat for this user",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": ["AiChat"],
+        "summary": "Create user`s ai chat",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createChatResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Can not find ai chat for this user",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": ["AiChat"],
+        "summary": "Send message to ai and get response",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sendMessageToAiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Can not find ai chat for this user",
             "content": {}
           }
         }
@@ -850,12 +942,7 @@
           },
           "watering": {
             "type": "string",
-            "enum": [
-              "three days",
-              "week",
-              "two weeks",
-              "month"
-            ],
+            "enum": ["three days", "week", "two weeks", "month"],
             "description": "Watering frequency",
             "example": "week"
           },
@@ -1049,12 +1136,7 @@
           },
           "watering": {
             "type": "string",
-            "enum": [
-              "three days",
-              "week",
-              "two weeks",
-              "month"
-            ],
+            "enum": ["three days", "week", "two weeks", "month"],
             "description": "Watering frequency",
             "example": "week"
           },
@@ -1242,12 +1324,7 @@
           },
           "watering": {
             "type": "string",
-            "enum": [
-              "three days",
-              "week",
-              "two weeks",
-              "month"
-            ],
+            "enum": ["three days", "week", "two weeks", "month"],
             "description": "Watering frequency",
             "example": "week"
           },
@@ -1449,12 +1526,7 @@
               },
               "watering": {
                 "type": "string",
-                "enum": [
-                  "three days",
-                  "week",
-                  "two weeks",
-                  "month"
-                ],
+                "enum": ["three days", "week", "two weeks", "month"],
                 "description": "Watering frequency",
                 "example": "week"
               },
@@ -1586,6 +1658,43 @@
             "type": "integer",
             "description": "Total number of matching adverts",
             "example": 25
+          }
+        }
+      },
+      "sendMessageToAiResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "message text",
+            "example": "Of course I can help you! What's the question"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["assistant", "user"],
+            "description": "who sent the message",
+            "example": "user"
+          }
+        }
+      },
+      "createChatResponse": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/sendMessageToAiResponse"
+            }
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner's unique ID",
+            "example": "64b7c7f9a19f4b2c5d8c1a9d"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier for the advert",
+            "example": "64b7c7f9a19f4b2c5d8c1a9d"
           }
         }
       }
