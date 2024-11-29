@@ -142,7 +142,7 @@ const advertSchema = new Schema(
     },
     plantType: {
       type: String,
-      enum: ["flowering", "follage"],
+      enum: ["flowering", "foliage"],
       required: [true, "the plantType property is required"],
     },
     plantCondition: {

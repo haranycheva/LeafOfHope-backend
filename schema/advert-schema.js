@@ -27,7 +27,7 @@ export const advertValidationSchema = Joi.object({
   substrate: Joi.string()
     .valid("universal", "peat", "cactus", "orchids", "palm", "other")
     .allow(""),
-  plantType: Joi.string().valid("flowering", "follage").required(),
+  plantType: Joi.string().valid("flowering", "foliage").required(),
   plantCondition: Joi.string().valid("conditioned", "unconditioned").required(),
   temperature: Joi.string().valid("heat-loving", "cold-resisted").required(),
   watering: Joi.string()
@@ -66,7 +66,7 @@ export const editAdvertSchema = Joi.object({
   substrate: Joi.string()
     .valid("universal", "peat", "cactus", "orchids", "palm", "other")
     .allow(""),
-  plantType: Joi.string().valid("flowering", "follage"),
+  plantType: Joi.string().valid("flowering", "foliage"),
   plantCondition: Joi.string().valid("conditioned", "unconditioned"),
   temperature: Joi.string().valid("heat-loving", "cold-resisted"),
   watering: Joi.string().valid(

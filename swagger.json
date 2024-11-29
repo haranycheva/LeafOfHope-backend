@@ -348,7 +348,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["flowering", "follage"]
+              "enum": ["flowering", "foliage"]
             },
             "description": "Type of the plant"
           },
@@ -972,7 +972,7 @@
           },
           "plantType": {
             "type": "string",
-            "enum": ["flowering", "follage"],
+            "enum": ["flowering", "foliage"],
             "description": "Type of plant",
             "example": "flowering"
           },
@@ -1166,7 +1166,7 @@
           },
           "plantType": {
             "type": "string",
-            "enum": ["flowering", "follage"],
+            "enum": ["flowering", "foliage"],
             "description": "Type of plant",
             "example": "flowering"
           },
@@ -1354,7 +1354,7 @@
           },
           "plantType": {
             "type": "string",
-            "enum": ["flowering", "follage"],
+            "enum": ["flowering", "foliage"],
             "description": "Type of plant",
             "example": "flowering"
           },
@@ -1568,7 +1568,7 @@
               },
               "plantType": {
                 "type": "string",
-                "enum": ["flowering", "follage"],
+                "enum": ["flowering", "foliage"],
                 "description": "Type of plant",
                 "example": "flowering"
               },
