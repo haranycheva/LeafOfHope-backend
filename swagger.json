@@ -1673,7 +1673,7 @@
             "type": "string",
             "enum": ["assistant", "user"],
             "description": "who sent the message",
-            "example": "user"
+            "example": "assistant"
           }
         }
       },
