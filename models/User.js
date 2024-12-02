@@ -22,6 +22,16 @@ const userSchema = new Schema(
       required: [true, "email is required"],
     },
     avatar: {
+      "small-chat-avatar-45px": {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_45,h_45/v1727338464/user_default.jpg",
+      },
+      "chat-avatar-75px": {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_75,h_75/v1727338464/user_default.jpg",
+      },
       "tiny-100px": {
         type: String,
         default:
