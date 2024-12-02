@@ -5,7 +5,7 @@ import {myOpenai} from "./index.js"
 const getAiMessage = async (messageHistory, lang) => {
   if (!messageHistory?.length) {
     const content = lang === "ua" ? defaultAnswer.ua : defaultAnswer.en;
-    return { content, role: "ai" };
+    return { content, role: "assistant" };
   }
   const completion = await myOpenai.chat.completions.create({
     model: "gpt-4o",
