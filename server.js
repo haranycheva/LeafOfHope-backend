@@ -11,3 +11,4 @@ mongoose.connect(DB_HOST).then(() => {
   console.log(err.message); 
   process.exit(1)
 })
+
