@@ -645,6 +645,30 @@
             "content": {}
           }
         }
+      },
+      "delete": {
+        "tags": ["AiChat"],
+        "summary": "delete ai chat",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiChatResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized/User not found",
+            "content": {}
+          },
+          "404": {
+            "description": "Ai chat for this user not found"
+          }
+        }
       }
     }
   },
@@ -1695,6 +1719,16 @@
             "type": "string",
             "description": "Unique identifier for the advert",
             "example": "64b7c7f9a19f4b2c5d8c1a9d"
+          }
+        }
+      },
+      "DeleteAiChatResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "chat is deleted",
+            "example": "success"
           }
         }
       }

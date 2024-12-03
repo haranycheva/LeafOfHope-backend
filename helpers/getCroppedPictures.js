@@ -1,5 +1,5 @@
 const imgProps= {
-  leafofhope:  [
+  user:  [
     "small-chat-avatar-45px",
     "chat-avatar-75px",
     "tiny-100px",
@@ -9,7 +9,7 @@ const imgProps= {
     "big-400px",
     "large-500px",
   ],
-  leafofhopeAdverts: [
+  advert: [
     "tiny-100px",
     "very-small-175px",
     "small-250px",

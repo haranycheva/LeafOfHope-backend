@@ -7,7 +7,7 @@ const folders = {
 };
 
 const pictureSize = {
-  leafofhope: [
+  user: [
     { width: 100, height: 100, crop: "scale" },
     { width: 75, height: 75, crop: "scale" },
     { width: 100, height: 100, crop: "scale" },
@@ -17,7 +17,7 @@ const pictureSize = {
     { width: 400, height: 400, crop: "scale" },
     { width: 500, height: 500, crop: "scale" },
   ],
-  leafofhopeAdverts: [
+  advert: [
     { width: 100, height: 100, crop: "scale" },
     { width: 175, height: 175, crop: "scale" },
     { width: 250, height: 250, crop: "scale" },
