@@ -33,6 +33,9 @@ export const advertValidationSchema = Joi.object({
   watering: Joi.string()
     .valid("three days", "week", "two weeks", "month")
     .required(),
+  rarity: Joi.string()
+  .valid("NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW")
+  .allow("")
 });
 
 export const editAdvertSchema = Joi.object({

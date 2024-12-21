@@ -150,6 +150,10 @@ const advertSchema = new Schema(
       enum: ["conditioned", "unconditioned"],
       required: [true, "the plantCondition property is required"],
     },
+    rarity: {
+      type: String,
+      enum: ["NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW"]
+    },
     keeper: {
       username: {
         type: String,

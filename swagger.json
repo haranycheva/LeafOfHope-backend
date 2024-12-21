@@ -1005,6 +1005,12 @@
             "enum": ["conditioned", "unconditioned"],
             "description": "Condition of the plant",
             "example": "conditioned"
+          },
+          "rariry": {
+            "type": "string",
+            "enum": ["NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW"],
+            "description": "Rarity of the plant",
+            "example": "DD"
           }
         }
       },
@@ -1200,6 +1206,12 @@
             "description": "Condition of the plant",
             "example": "conditioned"
           },
+          "rariry": {
+            "type": "string",
+            "enum": ["NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW"],
+            "description": "Rarity of the plant",
+            "example": "DD"
+          },
           "keeper": {
             "type": "object",
             "properties": {
@@ -1387,6 +1399,12 @@
             "enum": ["conditioned", "unconditioned"],
             "description": "Condition of the plant",
             "example": "conditioned"
+          },
+          "rariry": {
+            "type": "string",
+            "enum": ["NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW"],
+            "description": "Rarity of the plant",
+            "example": "DD"
           }
         }
       },
@@ -1601,6 +1619,12 @@
                 "enum": ["conditioned", "unconditioned"],
                 "description": "Condition of the plant",
                 "example": "conditioned"
+              },
+              "rariry": {
+                "type": "string",
+                "enum": ["NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW"],
+                "description": "Rarity of the plant",
+                "example": "DD"
               },
               "keeper": {
                 "type": "object",

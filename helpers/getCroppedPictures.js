@@ -18,6 +18,7 @@ const imgProps= {
     "large-500px"
   ]
 }
+
 const getCroppedPictures = ({ eager }, folder) => {
   const result = {};
   for (const i in eager) {
