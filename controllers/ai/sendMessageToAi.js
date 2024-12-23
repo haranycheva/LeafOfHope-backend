@@ -1,3 +1,4 @@
+import { aiChatLengthCheck } from "../../helpers/index.js";
 import { AiChat } from "../../models/AiChat.js";
 import { getAiMessage } from "../../openAi/index.js";
 
@@ -13,17 +14,18 @@ const sendMessageToAi = async (req, res, next) => {
     [...aiChat.messagesForAi, userMessageObj],
     lang
   );
+  // const cutChat = aiChatLengthCheck();
   const updatedAiChat = await AiChat.findByIdAndUpdate(
     { owner: user._id, _id: aiChat._id },
     {
-      messages: [...aiChat.messages, userMessageObj, aiAnswer],
-      messagesForAi: [...aiChat.messagesForAi, userMessageObj, aiAnswer],
+      $push: { messages: { $each: [userMessageObj, aiAnswer] } },
+      $push: { messagesForAi: { $each: [userMessageObj, aiAnswer] } },
     }
   ).select("-messagesForAi");
-  if(!updatedAiChat){
+  if (!updatedAiChat) {
     throw HttpError(500, "Can not send message");
   }
   res.json(aiAnswer);
 };
 
-export default sendMessageToAi
+export default sendMessageToAi;
