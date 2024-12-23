@@ -78,4 +78,7 @@ export const editAdvertSchema = Joi.object({
     "two weeks",
     "month"
   ),
+  rarity: Joi.string()
+  .valid("NE", "DD", "LC", "NT", "VU", "EN", "CR", "EW")
+  .allow("")
 });
