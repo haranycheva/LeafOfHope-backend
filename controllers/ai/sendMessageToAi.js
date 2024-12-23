@@ -13,12 +13,13 @@ const sendMessageToAi = async (req, res, next) => {
     [...aiChat.messagesForAi, userMessageObj],
     lang
   );
-  // const cutChat = aiChatLengthCheck();
   const updatedAiChat = await AiChat.findByIdAndUpdate(
     { owner: user._id, _id: aiChat._id },
     {
-      $push: { messages: { $each: [userMessageObj, aiAnswer] } },
-      $push: { messagesForAi: { $each: [userMessageObj, aiAnswer] } },
+      $push: {
+        messages: { $each: [userMessageObj, aiAnswer] },
+        messagesForAi: { $each: [userMessageObj, aiAnswer] },
+      },
     }
   ).select("-messagesForAi");
   if (!updatedAiChat) {
