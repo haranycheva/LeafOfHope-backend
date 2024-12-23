@@ -1,4 +1,3 @@
-import { aiChatLengthCheck } from "../../helpers/index.js";
 import { AiChat } from "../../models/AiChat.js";
 import { getAiMessage } from "../../openAi/index.js";
 
