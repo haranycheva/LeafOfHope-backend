@@ -5,7 +5,7 @@ const messageSchema = new Schema(
   {
     role: {
       type: String,
-      enum: [ "assistant", "user"],
+      enum: [, "assistant", "user"],
       required: true,
     },
     content: {
