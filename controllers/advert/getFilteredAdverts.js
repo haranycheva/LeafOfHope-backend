@@ -27,7 +27,6 @@ const getFilteredAdverts = async (req, res, next) => {
   if (!result) {
     throw HttpError(400, `Not found`);
   }
-  // const sortedAdverts = sortAdverts(result, sort);
   res.json({ result, tottal: totalAdverts });
 };
 export default getFilteredAdverts;
