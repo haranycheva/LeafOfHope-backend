@@ -1,5 +1,6 @@
 import { AiChat } from "../../models/AiChat.js";
 import { getAiMessage } from "../../openAi/index.js";
+import {HttpError} from "../../helpers/index.js";
 
 const sendMessageToAi = async (req, res, next) => {
   const { lang, message: userMessage } = req.body;
