@@ -241,7 +241,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["heat-loving", "cold-resisted"]
+              "enum": ["heat-loving", "medium", "cold-resisted"]
             },
             "description": "Temperature preferences: heat-loving or cold-resisted"
           },
@@ -948,7 +948,7 @@
           },
           "temperature": {
             "type": "string",
-            "enum": ["heat-loving", "cold-resisted"],
+            "enum": ["heat-loving", "medium", "cold-resisted"],
             "description": "Preferred temperature",
             "example": "heat-loving"
           },
@@ -1148,7 +1148,7 @@
           },
           "temperature": {
             "type": "string",
-            "enum": ["heat-loving", "cold-resisted"],
+            "enum": ["heat-loving", "medium", "cold-resisted"],
             "description": "Preferred temperature",
             "example": "heat-loving"
           },
@@ -1342,7 +1342,7 @@
           },
           "temperature": {
             "type": "string",
-            "enum": ["heat-loving", "cold-resisted"],
+            "enum": ["heat-loving", "medium", "cold-resisted"],
             "description": "Preferred temperature",
             "example": "heat-loving"
           },
@@ -1550,7 +1550,7 @@
               },
               "temperature": {
                 "type": "string",
-                "enum": ["heat-loving", "cold-resisted"],
+                "enum": ["heat-loving", "medium", "cold-resisted"],
                 "description": "Preferred temperature",
                 "example": "heat-loving"
               },
