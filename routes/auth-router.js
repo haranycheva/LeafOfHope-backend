@@ -13,6 +13,13 @@ authRouter.post(
   authControllers.signup
 );
 
+authRouter.post(
+  "/signup/verificate",
+  upload.single("avatar"),
+  validateBody(userValidationSchema),
+  authControllers.signupVerification
+);
+
 authRouter.post("/signin", validateBody(signinValidationSchema), authControllers.signin);
 
 authRouter.get("/getInfo", authorization, authControllers.getInfo);
@@ -26,5 +33,7 @@ authRouter.put(
   validateBody(editUserSchema),
   authControllers.redactUser
 );
+
+authRouter.put("/verificate/:verificationToken", authControllers.verificate);
 
 export default authRouter;
