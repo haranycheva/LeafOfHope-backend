@@ -1,5 +1,5 @@
 
-import { addPicture, HttpError, sendMessage } from "../../helpers/index.js";
+import { addPicture, createVerificationToken, HttpError, sendMessage } from "../../helpers/index.js";
 import { User } from "../../models/User.js";
 import bcrypt from "bcryptjs";
 
@@ -16,6 +16,7 @@ const signupVerification = async (req, res, next) => {
   if(!password || password.length < 6){
     throw HttpError(409, "Password must be more than 6 symbols");
   }
+  const verificationToken = createVerificationToken() 
   const pass = await bcrypt.hash(password, 10);
   const newUser = await User.create({
     username,
@@ -24,6 +25,7 @@ const signupVerification = async (req, res, next) => {
     adress,
     avatar: req.body.avatar,
     phone,
+    verificationToken,
   });
   if(!newUser){
     throw HttpError(500, "Can not create user");
@@ -40,6 +42,7 @@ const signupVerification = async (req, res, next) => {
       adress: newUser.adress,
       phone: newUser.phone,
       avatar: newUser.avatar,
+      verificationToken: newUser.verificationToken
     },
   });
 };
