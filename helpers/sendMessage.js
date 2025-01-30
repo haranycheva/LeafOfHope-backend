@@ -27,7 +27,7 @@ const sendMessage = async (user) => {
           <div style="margin: 0 auto; padding: 0 20px; width: 480px">
             <div style="padding: 0 0 24px">
               <img
-                src="https://res.cloudinary.com/dk3syrsg5/image/upload/v1737149706/Logo_tyqybs.svg"
+                src="cid:logo"
                 alt="Company Logo"
                 style="vertical-align: top"
                 width="171px"
@@ -68,13 +68,19 @@ const sendMessage = async (user) => {
                   text-decoration: none;
                 "
               >
-                До консультації
+                Submit email
               </a>
             </div>
           </div>
         </td>
       </tr>
     </table>`,
+    attachments: [
+      {
+        filename: "Logo.png",
+        path: "./pictures/Logo.png", 
+        cid: "logo",
+      },]
   };
 
   return await transporter.sendMail(message);
