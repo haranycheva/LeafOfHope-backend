@@ -19,62 +19,77 @@ const sendMessage = async (user) => {
     to: email,
     subject: "verificate email",
     text: "some text",
-    html: `    <table
-      style="border-collapse: collapse; width: 100%; margin: 0; padding: 0"
-    >
-      <tr>
-        <td style="background: #173414; padding: 40px 0 44px">
-          <div style="margin: 0 auto; padding: 0 20px; width: 480px">
-            <div style="padding: 0 0 24px">
-              <img
-                src="cid:logo"
-                alt="Company Logo"
-                style="vertical-align: top"
-                width="171px"
-                height="67px"
-              />
-            </div>
-            <div
+    html: `<table
+  style="border-collapse: collapse; width: 100%; margin: 0; padding: 0"
+>
+  <tr>
+    <td style="background: #173414; padding: 40px 0 44px">
+      <div style="margin: 0 auto; padding: 0 20px; width: 480px">
+        <div style="padding: 0 0 24px;">
+          <img
+            src="cid:logo"
+            alt="Company Logo"
+            style="vertical-align: top; display: block;"
+            width="121px"
+            height="47px"
+          />
+        </div>
+        <div
+          style="
+            color: #908880;
+            font: 300 13px 'Roboto', sans-serif;
+            line-height: 170%;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+          "
+        >
+          <div
+            style="
+              color: #173414;
+              font: 700 20px 'Roboto', sans-serif;
+              padding: 0 0 12px;
+              text-align: center;
+            "
+          >
+            Welcome to Leaf Of Hope, ${username}! 🌿
+          </div>
+          <div style="text-align: center; font-size: 16px; color: #333;">
+            Thank you for signing up! Before you can start exploring and exchanging plants, we need to verify your email address. Simply click the button below to complete your registration.
+          </div>
+          <div style="text-align: center; margin-top: 20px;">
+            <a
+              href="https://rockmasha.github.io/Leaf_Of_Hope/authentication.html?verification=${verificationToken}"
+              target="_blank"
+              rel="noopener noreferrer"
               style="
-                color: #908880;
-                font: 300 13px 'Roboto', sans-serif;
-                line-height: 170%;
+                background-color: #173414;
+                border-radius: 8px;
+                color: #ffffff;
+                cursor: pointer;
+                display: inline-block;
+                font: 500 16px 'Roboto', sans-serif;
+                margin: 16px 0 0;
+                min-width: 180px;
+                padding: 12px 24px;
+                text-align: center;
+                text-decoration: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
               "
             >
-              <div
-                style="
-                  color: #fff;
-                  font: 700 18px 'Roboto', sans-serif;
-                  padding: 0 0 12px;
-                "
-              >
-                Hi ${username} please submit your email by
-              </div>
-              <a
-                href="https://rockmasha.github.io/Leaf_Of_Hope/authentication.html?verification=${verificationToken}"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="
-                  background-color: #fff;
-                  border-radius: 8px;
-                  color: #173414;
-                  cursor: pointer;
-                  display: inline-block;
-                  font: 500 16px 'Roboto', sans-serif;
-                  margin: 16px 0 0;
-                  min-width: 100px;
-                  padding: 7px 40px;
-                  text-align: center;
-                  text-decoration: none;
-                "
-              >
-                Submit email
-              </a>
-            </div>
+              Verify My Email
+            </a>
           </div>
-        </td>
-      </tr>
-    </table>`,
+          <div style="margin-top: 24px; text-align: center; font-size: 14px; color: #666;">
+            If you didn’t create an account, you can safely ignore this email.
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+`,
     attachments: [
       {
         filename: "Logo.png",
