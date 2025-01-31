@@ -1,5 +1,6 @@
 
 import { addPicture, createVerificationToken, HttpError, sendMessage } from "../../helpers/index.js";
+import { verificateMessage } from "../../messages/index.js";
 import { User } from "../../models/User.js";
 import bcrypt from "bcryptjs";
 
@@ -30,7 +31,7 @@ const signupVerification = async (req, res, next) => {
   if(!newUser){
     throw HttpError(500, "Can not create user");
   }
-  const message = await sendMessage(newUser)
+  const message = await sendMessage(verificateMessage(newUser, verificationToken))
   if(!message){
     throw HttpError(500, "Can not send verification message");
   }
