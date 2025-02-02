@@ -9,6 +9,7 @@ const verificate = async (req, res, next) => {
   try {
     jwt.verify(verificationToken, JWT_VERIFICATION);
     const user = await User.findOne({verificationToken});
+    console.log(user);
     if (
       !user ||
       !user.verificationToken ||
@@ -17,7 +18,7 @@ const verificate = async (req, res, next) => {
       throw HttpError(401, "user not found");
     }
     const token = createToken(user)
-    const updatedUser = await User.findOneAndUpdate({verificationToken: "", token, verification: true}).select("-password -token");
+    const updatedUser = await User.findOneAndUpdate({_id: user._id}, {verificationToken: "", token, verification: true}).select("-password -token");
     if(!updatedUser){
         throw HttpError(500, "can not update user information");
     }
