@@ -106,7 +106,7 @@ const advertSchema = new Schema(
     },
     temperature: {
       type: String,
-      enum: ["heat-loving", "medium", "cold-resisted"],
+      enum: ["heat-loving", "medium", "cold-resistant"],
       required: [true, "the temperature property is required"],
     },
     height: {
