@@ -5,6 +5,7 @@ import upload from "../middleware/upload.js";
 import isValidId from "../middleware/isValidId.js";
 import {validateBody} from "../decorators/index.js";
 import { advertValidationSchema, editAdvertSchema } from "../schema/advert-schema.js";
+import { changeActivityValidationSchema } from "../schema/statisctics-schema.js";
 
 const advertRouter = express.Router();
 
@@ -20,6 +21,13 @@ advertRouter.post(
   authorization,
   validateBody(advertValidationSchema),
   advertControllers.addAdvert
+);
+
+advertRouter.put(
+  "/activity/:id",
+  authorization,
+  validateBody(changeActivityValidationSchema),
+  advertControllers.changeActivity
 );
 
 advertRouter.put(

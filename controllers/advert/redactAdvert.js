@@ -5,6 +5,9 @@ import { Advert } from "../../models/Advert.js";
 const redactAdvert = async (req, res, next) => {
   const { _id: owner } = req.user;
   const advertId = req.params.id;
+  if (req.body.active) {
+    throw HttpError(400, `Use another link for making advert inactive or active`);
+  }
   if (req.file) {
     req.body.image = await addPicture(req, "advert");
   }
