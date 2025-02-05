@@ -86,7 +86,7 @@ const userSchema = new Schema(
       default: ""
     }
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true}
 );
 userSchema.post("save", handleSaveError);
 userSchema.pre("findOneAndUpdate", preUpdate);
