@@ -1,4 +1,4 @@
-import { HttpError, sortAdverts } from "../../helpers/index.js";
+import { addFiltrationStats, HttpError, sortAdverts } from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
 
 const getFilteredAdverts = async (req, res, next) => {
@@ -19,6 +19,7 @@ const getFilteredAdverts = async (req, res, next) => {
     ],
     active: true,
   };
+  addFiltrationStats(whatToFilter)
   const totalAdverts = await Advert.countDocuments(whatTofindObject);
   const result = await Advert.find(whatTofindObject, "", {
     skip: (page - 1) * limit,
