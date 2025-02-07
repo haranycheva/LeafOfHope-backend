@@ -2,7 +2,7 @@ import { HttpError } from "../../helpers/index.js";
 import { Advert } from "../../models/Advert.js";
 import { advertDeactivationData } from "../../models/advertDeactivationData.js";
 
-const changeActivity = async (req, res, next) => {
+const changeActivity = async (req, res, next) => {  
   const advertId = req.params.id;
   const { _id: owner } = req.user;
   const { active, reason } = req.body;
@@ -13,7 +13,7 @@ const changeActivity = async (req, res, next) => {
   if (!editedAdvert) {
     throw HttpError(404, `Can not find an advert with id ${advertId}`);
   }
-  if (active) {
+  if (active === "true") {
      return res.json({
       message: "setting advert active is successful",
       advert: editedAdvert,
