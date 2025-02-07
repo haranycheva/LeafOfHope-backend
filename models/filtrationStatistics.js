@@ -15,7 +15,7 @@ const filtrationStatisticsSchema = new Schema(
     },
     active: {
       type: Boolean,
-      default: ""
+      default: true,
     },
     light: {
       type: String,
