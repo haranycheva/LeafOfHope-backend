@@ -1,0 +1,1 @@
+export {default as getMetabaseLink} from "./getMetabaseLink.js"
