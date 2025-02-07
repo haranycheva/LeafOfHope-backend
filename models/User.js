@@ -84,6 +84,11 @@ const userSchema = new Schema(
     verificationToken: {
       type: String,
       default: ""
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
     }
   },
   { versionKey: false, timestamps: true}
