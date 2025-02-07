@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import app from "./app.js"
 import mongoose from 'mongoose';
 
-const {DB_HOST} = process.env
+const {DB_HOST, PORT} = process.env
 
 mongoose.connect(DB_HOST).then(() => {
   console.log("DB connect")
