@@ -33,6 +33,10 @@
     {
       "name": "AiChat",
       "description": "AiChat endpoints"
+    },
+    {
+      "name": "Metabase",
+      "description": "Metabase statistics endpoints"
     }
   ],
   "paths": {
@@ -68,6 +72,74 @@
           },
           "409": {
             "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/signup/verificate": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration with sending a verification email",
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationVerificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/verificate/{verificationToken}": {
+      "put": {
+        "tags": ["Auth"],
+        "summary": "Verify user registration",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "verificationToken",
+            "required": true,
+            "type": "string",
+            "description": "Token that was provided in the email"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful verification",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized or user not found",
             "content": {}
           }
         }
@@ -670,6 +742,56 @@
           }
         }
       }
+    },
+    "/api/metabase": {
+      "get": {
+        "tags": ["Metabase"],
+        "summary": "Get Metabase dashboard link",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated Metabase link",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "iframeUrl": {
+                      "type": "string",
+                      "description": "Metabase iframe URL for embedding",
+                      "example": "https://metabase.example.com/embed/dashboard/eyJhbGciOiJIUz..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Only admin user can see statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Only admin user can see statistics"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -718,6 +840,62 @@
             "description": "User's token",
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWNmZTZjYzk2MzlhYzNmODEyMGY0YiIsImlhdCI6MTcyOTk1MzM4OSwiZXhwIjoxNzMwMDM2MTg5fQ.nBL9aA-aU_Necx6BHXNfk-ORsEAlU4L99H5CZyxjqvo"
           },
+          "user": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's ID",
+                "example": "671cfe6cc9639ac3f8120f4b"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "example": "user@gmail.com",
+                "format": "email"
+              },
+              "username": {
+                "type": "string",
+                "description": "User's name",
+                "example": "user"
+              },
+              "adress": {
+                "type": "string",
+                "description": "User's address",
+                "example": "Kyiv, Ukraine;"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone number",
+                "example": "+380123456789"
+              },
+              "avatar": {
+                "type": "object",
+                "properties": {
+                  "small-250px": {
+                    "type": "string",
+                    "description": "User's small avatar (250x250px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_250,w_250/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
+                  },
+                  "medium-300px": {
+                    "type": "string",
+                    "description": "User's medium avatar (300x300px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_300,w_300/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
+                  },
+                  "large-500px": {
+                    "type": "string",
+                    "description": "User's large avatar (500x500px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_500,w_500/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RegistrationVerificateResponse": {
+        "type": "object",
+        "properties": {
           "user": {
             "type": "object",
             "properties": {
