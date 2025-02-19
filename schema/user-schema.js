@@ -18,6 +18,6 @@ export const editUserSchema = Joi.object({
   export const signinValidationSchema = Joi.object({
     password: Joi.string().min(6),
     email: Joi.string().pattern(emailReg),
-    id_token: Joi.string(),
+    token_id: Joi.string(),
   });
 
