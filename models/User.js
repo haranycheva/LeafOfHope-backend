@@ -7,13 +7,26 @@ const userSchema = new Schema(
     username: {
       type: String,
       minLength: 1,
-      maxLength: 28,
+      maxLength: 40,
       required: [true, "username is required"],
     },
     password: {
       type: String,
       minLength: 6,
-      required: [true, "password is required"],
+      required: function () {
+        return !this.fromGoogle;
+      },
+      validate: {
+        validator: function (value) {
+          if (!this.fromGoogle && (!value || value.length < 6)) {
+            throw new Error("Password must be at least 6 characters long");
+          }
+        },
+      },
+    },
+    fromGoogle: {
+      type: Boolean,
+      default: false
     },
     email: {
       type: String,
@@ -66,12 +79,10 @@ const userSchema = new Schema(
     phone: {
       type: String,
       match: phoneReg,
-      required: [true, "phone is required"],
     },
     adress: {
       type: String,
       maxLength: 200,
-      required: [true, "adress is required"],
     },
     token: {
       type: String,
@@ -79,19 +90,19 @@ const userSchema = new Schema(
     },
     verification: {
       type: Boolean,
-      default: false
+      default: false,
     },
     verificationToken: {
       type: String,
-      default: ""
+      default: "",
     },
     role: {
       type: String,
       enum: ["user", "admin"],
-      default: "user"
-    }
+      default: "user",
+    },
   },
-  { versionKey: false, timestamps: true}
+  { versionKey: false, timestamps: true }
 );
 userSchema.post("save", handleSaveError);
 userSchema.pre("findOneAndUpdate", preUpdate);

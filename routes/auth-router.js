@@ -7,9 +7,7 @@ import { editUserSchema, signinValidationSchema, userValidationSchema } from "..
 const authRouter = express.Router();
 
 authRouter.post(
-  "/signup",
-  upload.single("avatar"),
-  validateBody(userValidationSchema),
+  "/signupGoogle",
   authControllers.signup
 );
 

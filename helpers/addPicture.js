@@ -28,12 +28,14 @@ const pictureSize = {
 };
 
 const addPicture = async (req, folder) => {
-  const image = await cloudinary.uploader.upload(req.file.path, {
+  const pict = req?.file?.path || req
+  const image = await cloudinary.uploader.upload(pict, {
     folder: folders[folder],
     eager: pictureSize[folder],
   });
   await fs.unlink(req.file.path);
   return getCroppedPictures(image, folder);
 };
+
 
 export default addPicture;
