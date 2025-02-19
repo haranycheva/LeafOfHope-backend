@@ -33,7 +33,7 @@ const addPicture = async (req, folder) => {
     folder: folders[folder],
     eager: pictureSize[folder],
   });
-  await fs.unlink(req.file.path);
+  req?.file?.path ? await fs.unlink(req.file.path) : "";
   return getCroppedPictures(image, folder);
 };
 
