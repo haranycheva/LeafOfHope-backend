@@ -204,13 +204,11 @@ const advertSchema = new Schema(
         type: String,
         match: phoneReg,
         ref: "user",
-        required: [true, "phone is required"],
       },
       adress: {
         type: String,
         maxLength: 60,
         ref: "user",
-        required: [true, "adress is required"],
       },
     },
     owner: {
