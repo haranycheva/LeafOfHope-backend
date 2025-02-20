@@ -14,10 +14,10 @@
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
     {
-      "url": "https://leafofhope-backend.onrender.com"
+      "url": "https://shnap.mom"
     },
     {
-      "url": "https://shnap.mom"
+      "url": "https://leafofhope-backend.onrender.com"
     }
   ],
   "tags": [
