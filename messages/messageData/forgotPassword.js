@@ -5,7 +5,7 @@ const forgotPassword = (user, verificationToken) => {
         Let’s get you back to exploring and exchanging plants in no time! Just simply click
         the button below`,
         buttonText: `Reset My Password`,
-        buttonUrl: `https://rockmasha.github.io/Leaf_Of_Hope/resetPassword.html?verification=${verificationToken}`,
+        buttonUrl: `https://leafofhope.online/resetPassword.html?verification=${verificationToken}`,
         warning: `If you didn’t request a password reset, please ignore this email or contact support if needed.`,
         subject: `Reset your password `,
         email: user.email,
