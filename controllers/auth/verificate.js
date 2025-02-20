@@ -9,7 +9,6 @@ const verificate = async (req, res, next) => {
   try {
     jwt.verify(verificationToken, JWT_VERIFICATION);
     const user = await User.findOne({verificationToken});
-    console.log(user);
     if (
       !user ||
       !user.verificationToken ||

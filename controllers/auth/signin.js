@@ -8,7 +8,6 @@ import bcrypt from "bcryptjs";
 
 const signin = async (req, res, next) => {
   const { email, password, token_id } = req.body;
-
   if (token_id) {
     const {
       email,

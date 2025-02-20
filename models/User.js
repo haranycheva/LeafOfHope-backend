@@ -101,6 +101,10 @@ const userSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    resetPasswordToken: {
+      type: String,
+      default: ""
+    }
   },
   { versionKey: false, timestamps: true }
 );

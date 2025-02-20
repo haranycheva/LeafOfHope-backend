@@ -5,7 +5,6 @@ const {GOOGLE_CLIENT_ID} = process.env
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 const googleAuthCheck = async (tokenId) => {
-    console.log(tokenId)
     const ticket = await client.verifyIdToken({
         idToken: tokenId,
         audience: GOOGLE_CLIENT_ID, 
