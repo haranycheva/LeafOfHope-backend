@@ -43,17 +43,17 @@
     }
   ],
   "paths": {
-    "/api/auth/signup": {
+    "/api/auth/signupGoogle": {
       "post": {
         "tags": ["Auth"],
-        "summary": "User registration",
+        "summary": "User registration with google",
         "requestBody": {
           "description": "Registration's object",
           "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationRequest"
+                "$ref": "#/components/schemas/RegistrationGoogleRequest"
               }
             }
           }
@@ -835,6 +835,17 @@
           }
         }
       },
+      "RegistrationGoogleRequest": {
+        "type": "object",
+        "required": ["token_id"],
+        "properties": {
+          "token_id": {
+            "type": "string",
+            "description": "User`s google token",
+            "format": "token"
+          }
+        }
+      },
       "RegistrationResponse": {
         "type": "object",
         "properties": {
@@ -872,23 +883,64 @@
                 "description": "User's phone number",
                 "example": "+380123456789"
               },
+              "fromGoogle": {
+                "type": "boolean",
+                "description": "Indicates if the user registered via Google",
+                "example": false
+              },
+              "verification": {
+                "type": "boolean",
+                "description": "Indicates if the user is verified",
+                "example": false
+              },
+              "role": {
+                "type": "string",
+                "enum": ["user", "admin"],
+                "description": "User's role",
+                "example": "user"
+              },
               "avatar": {
                 "type": "object",
                 "properties": {
+                  "small-chat-avatar-45px": {
+                    "type": "string",
+                    "description": "User's small chat avatar (45x45px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_45,h_45/v1727338464/user_default.jpg"
+                  },
+                  "chat-avatar-75px": {
+                    "type": "string",
+                    "description": "User's chat avatar (75x75px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_75,h_75/v1727338464/user_default.jpg"
+                  },
+                  "tiny-100px": {
+                    "type": "string",
+                    "description": "User's tiny avatar (100x100px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_fill,w_100,h_100/v1727338464/user_default.jpg"
+                  },
+                  "very-small-175px": {
+                    "type": "string",
+                    "description": "User's very small avatar (175x175px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
+                  },
                   "small-250px": {
                     "type": "string",
                     "description": "User's small avatar (250x250px)",
-                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_250,w_250/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
                   },
                   "medium-300px": {
                     "type": "string",
                     "description": "User's medium avatar (300x300px)",
-                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_300,w_300/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879712/leafofhope/Photo_2_jxjjqh.jpg"
+                  },
+                  "big-400px": {
+                    "type": "string",
+                    "description": "User's big avatar (400x400px)",
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg"
                   },
                   "large-500px": {
                     "type": "string",
                     "description": "User's large avatar (500x500px)",
-                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/c_scale,h_500,w_500/v1729953390/leafofhope/whfr9rq5dvphgvzdl2kq.jpg"
+                    "example": "https://res.cloudinary.com/dk3syrsg5/image/upload/v1728879723/leafofhope/Photo_3_ri0xrn.jpg"
                   }
                 }
               }
