@@ -9,11 +9,12 @@ const getMetabaseLink = (req, res, next) => {
     throw HttpError(403, "Only admin user can see statistics");
   }
   const payload = {
-    resource: { dashboard: 33 },
+    resource: { dashboard: 2 },
     params: {},
     exp: Math.round(Date.now() / 1000) + 10 * 60,
   };
-  const token = jwt.sign(payload, METABASE_SECRET_KEY);
+  const token = jwt.sign(payload, METABASE_SECRET_KEY, { algorithm: 'HS256' });
+  
   const iframeUrl =
     METABASE_SITE_URL +
     "/embed/dashboard/" +
