@@ -13,8 +13,8 @@ const getMetabaseLink = (req, res, next) => {
     params: {},
     exp: Math.round(Date.now() / 1000) + 10 * 60,
   };
-  const token = jwt.sign(payload, METABASE_SECRET_KEY, { algorithm: 'HS256' });
-  
+  const token = jwt.sign(payload, METABASE_SECRET_KEY);
+
   const iframeUrl =
     METABASE_SITE_URL +
     "/embed/dashboard/" +
