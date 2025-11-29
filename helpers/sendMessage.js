@@ -1,4 +1,6 @@
 import nodemailer from "nodemailer";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { messageTemplate } from "../messages/index.js";
 const { EMAIL_API_KEY, EMAIL_FROM } = process.env;
 const configOptions = {
@@ -13,6 +15,11 @@ const configOptions = {
 
 const transporter = nodemailer.createTransport(configOptions);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const ROOT_DIR = join(__dirname, '..');
+const LOGO_PATH = join(ROOT_DIR, 'pictures', 'Logo.png');
+
 const sendMessage = async (messageParams) => {
   const message = {
     from: EMAIL_FROM,
@@ -23,7 +30,7 @@ const sendMessage = async (messageParams) => {
     attachments: [
       {
         filename: "Logo.png",
-        path: "./pictures/Logo.png", 
+        path: LOGO_PATH, 
         cid: "logo",
       },]
   };
