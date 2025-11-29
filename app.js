@@ -18,7 +18,16 @@ app.use("/api/auth", authRouter);
 app.use("/api/ai-chat", aiRouter)
 app.use("/api/metabase", metabaseRouter);
 
-app.use("/api/docs", swaggerui.serve, swaggerui.setup(swaggerDocument));
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.0.0/swagger-ui.min.css";
+const JS_URLS = [
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.0.0/swagger-ui-bundle.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.0.0/swagger-ui-standalone-preset.js"
+];
+
+app.use("/api/docs", swaggerui.serve, swaggerui.setup(swaggerDocument, {
+  customCssUrl: CSS_URL,
+  customJs: JS_URLS
+}));
 
 app.use((err, req, res, next) => {
   console.log(err);
